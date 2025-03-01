@@ -1,7 +1,6 @@
-[your app name here]
-CodePath WEB103 Final Project
+Zion Chin Baptist Church Website
 
-Designed and developed by: [your names here]
+Designed and developed by: Bawi Lian 
 
 🔗 Link to deployed app:
 
