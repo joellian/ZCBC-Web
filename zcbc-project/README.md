@@ -1,4 +1,4 @@
-Zion Chin Baptist Church Website
+[Zion Chin Baptist Church Website]
 
 Designed and developed by: Bawi Lian 
 
@@ -6,15 +6,15 @@ Designed and developed by: Bawi Lian
 
 About
 Description and Purpose
-[text goes here]
+This website is created for Zion Chin Baptist Church. It provide visitors with general information about the Church. Such as hours of services, ministries, mission statement, local work, global outreach, missionary work,..etc. Church admin is able to maintain and edit contents of the website. 
 
 Inspiration
-[text goes here]
+Zion Chin Baptist Church is in need of public visibility. They want to share their beliefs with the rest of the world. As of right now they are reliant on Social Media platforms. This limits them from being able to showcase their contributions to the community, country, and other parts of the world. This website aims to bring those goals to life.
 
 Tech Stack
-Frontend:
+Frontend: HTML/CSS, JavaScript, ReactJS, Vite
 
-Backend:
+Backend: 
 
 Features
 [Name of Feature 1]
