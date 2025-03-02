@@ -17,3 +17,40 @@
   min-height: 100vh;
 }
 
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-body iframe {
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.card-body a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card-body a:hover {
+  text-decoration: underline;
+}
+.card-body .map-button {
+  background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.card-body .map-button:hover {
+  background-color: #0056b3;
+}
