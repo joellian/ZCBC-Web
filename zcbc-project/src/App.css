@@ -1,22 +1,106 @@
+/*Global Styles*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+/* Root Styles */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   color: black;
   background-color: white;
+  width: 100%;
+  height: 100%; 
+  
 }
-
-
- body {
-  margin: 0;
+/* Header Styles */
+.header-container {
+  width: 100%;
+  height: auto;
+  background-color: #D6DEEC;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 0px;
+  margin: 0;
 
+}
+.header-container ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+
+}
+.header-container li {
+  display: inline;
+  margin: 0 0px;
+}
+.header-container li a {
+  display: block;
+  color: #C25051;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.header-container li a:hover {
+  color: #361717;
+}
+.header-item.church-name a {
+  display: flex;
+  padding: 16px;
+  text-decoration: none;
+  color: #C25051;
+  font-weight: bold;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.header-item.church-name a:hover {
+  color: #361717;
+}
+.header-item:nth-of-type(1){
+  flex:1
+}
+.header-item:nth-of-type(2){
+  flex:1
+}
+.header-item.church-logo img {
+  height: 55px;
+  width: auto;
+  max-height: 80px;
+  object-fit: contain;
+
+}
+/* Home Page */
+.home-page {
+  text-align: center;
+  background-color: #092352;
+
+}
+.home-page.header a {
+  color:#ddd
+}
+/* Visit Info Card Styles */
+.VisitInfo {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  
+}
+.service-detail {
+ 
+  text-align: center;
+  align-items: stretch;
+}
+.visit-detail {
+  text-align: center;
+}
 .card {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -24,14 +108,16 @@
   overflow: hidden;
   margin: 20px 0;
 }
-
 .card-body {
-  padding: 16px;
+  padding: 32px;
+  flex-wrap: column;
+  justify-content: center;
+
 }
 
 .card-body iframe {
-  border-radius: 8px;
-  margin-bottom: 16px;
+  border-radius: 16px;
+  margin-bottom:18px;
 }
 
 .card-body a {
@@ -54,3 +140,5 @@
 .card-body .map-button:hover {
   background-color: #0056b3;
 }
+/* Visit US */
+

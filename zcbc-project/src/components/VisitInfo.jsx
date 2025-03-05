@@ -2,12 +2,27 @@ import React from 'react';
 
 const VisitInfo = (props) => {
     return (
-        <div className="VisitInfo">
+        <div className="visit-info">
+            <div className = "service-detail">
+            <h1> SUNDAY GATHERING TIMES </h1>
+            <h3> Sunday School </h3>
+            <h4> 12:00 PM to 2:00 PM </h4>
+            <h3> The Chapel Service </h3>
+            <h4> 2:00 PM to 4:00 PM</h4>
+            </div>
+            <div className="visit-detail">
+                <h2> LOCATED IN NORTHERN KENTUCKY </h2>
+                <h4> You can get directions to our Church below </h4>
+                <h3> OUR ADDRESS </h3>
+                <h5> Zion Chin Baptist Church</h5>
+                <h5> 213 Main Street </h5>
+                <h5> Florence, KY 41042 </h5>
+            </div>
             <div className="card-body">
                 <iframe
                 src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sen!2sus!4v1424234234234!6m8!1m7!1sjRS0zluO7YLgAufcgksx6A!2m2!1d39.0034366!2d-84.6232678!3f128.15!4f0!5f0.7820865974627469"
-                width="600"
-                height="450"
+                width="400"
+                height="250"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
