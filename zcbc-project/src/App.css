@@ -83,52 +83,55 @@ html, body {
   background-color: #092352;
 
 }
-.home-page.header a {
-  color:#ddd
+.home-page .header {
+  color:#C25051
+}
+.home-page .body {
+  color:#C25051
 }
 /* Visit Info Card Styles */
 .VisitInfo {
   display: flex;
-  justify-content: space-around;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   
 }
-.service-detail {
+.VisitInfo .service-detail {
  
   text-align: center;
   align-items: stretch;
 }
-.visit-detail {
+.VisitInfo .visit-detail {
   text-align: center;
 }
-.card {
+.VisitInfo .card {
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   margin: 20px 0;
 }
-.card-body {
+.VisitInfo .card-body {
   padding: 32px;
   flex-wrap: column;
   justify-content: center;
 
 }
 
-.card-body iframe {
+.visitInfo .card-body iframe {
   border-radius: 16px;
   margin-bottom:18px;
 }
 
-.card-body a {
+.visitInfo .card-body a {
   color: #007bff;
   text-decoration: none;
 }
 
-.card-body a:hover {
+.visitInfo .card-body a:hover {
   text-decoration: underline;
 }
-.card-body .map-button {
+.visitInfo .card-body .map-button {
   background-color: #007bff;
     color: white;
     border: none;
@@ -137,8 +140,68 @@ html, body {
     cursor: pointer;
     text-decoration: none;
 }
-.card-body .map-button:hover {
+.visitInfo .card-body .map-button:hover {
   background-color: #0056b3;
 }
 /* Visit US */
+
+/* Contact Us*/
+.contact-form {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #092352;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form .form-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #C25051;
+}
+
+.contact-form .form-header h4 {
+  color: #C25051;
+}
+
+.contact-form .form-items {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.contact-form .form-group {
+  margin-bottom: 15px;
+}
+
+.contact-form .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #C25051;
+}
+
+.contact-form .form-group input,
+.contact-form .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.contact-form .form-group input[type="submit"] {
+  background-color: #A84747;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.contact-form .form-group input[type="submit"]:hover {
+  background-color: #C25051;
+}
+
 
