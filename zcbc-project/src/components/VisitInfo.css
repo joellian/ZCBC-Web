@@ -1,0 +1,55 @@
+/* Visit Info Card Styles */
+.VisitInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .VisitInfo .service-detail {
+   
+    text-align: center;
+    align-items: stretch;
+  }
+  .VisitInfo .visit-detail {
+    text-align: center;
+  }
+  .VisitInfo .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .VisitInfo .card-body {
+    padding: 32px;
+    flex-wrap: column;
+    justify-content: center;
+  
+  }
+  
+  .visitInfo .card-body iframe {
+    border-radius: 16px;
+    margin-bottom:18px;
+  }
+  
+  .visitInfo .card-body a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .visitInfo .card-body a:hover {
+    text-decoration: underline;
+  }
+  .visitInfo .card-body .map-button {
+    background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+  }
+  .visitInfo .card-body .map-button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,6 +1,7 @@
 import React from 'react';
+import './VisitInfo.css';
 
-const VisitInfo = (props) => {
+const VisitInfo = () => {
     return (
         <div className="visit-info">
             <div className = "service-detail">

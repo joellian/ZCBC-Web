@@ -1,4 +1,5 @@
 import React from 'react';
+import './HomePage.css';
 
 const HomePage = () => {
     return (
@@ -7,18 +8,9 @@ const HomePage = () => {
                 <div className="header">
                 <h2>Welcome to our Church</h2>
                 </div>
-                <div className="body">
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
-                <p>We are glad to have you here. Explore our website to learn more about us.</p>
+                <div className="events">
+                    Event Component
+                
                 
                 </div>
             </main>

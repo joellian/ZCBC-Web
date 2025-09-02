@@ -71,7 +71,7 @@ html, body {
   flex:1
 }
 .header-item.church-logo img {
-  height: 55px;
+  height: auto;
   width: auto;
   max-height: 80px;
   object-fit: contain;
