@@ -2,7 +2,46 @@
 
 Developed by: Bawi Hmun Lian
 
-This web app: Informs the public about Zion Chin Baptist Church in Northern Kentucky. It contain details of current leadership, community work, missionary work, and global outreach. 
+This web app informs the public about Zion Chin Baptist Church in Northern Kentucky. It contains details of current leadership, community work, missionary work, and global outreach.
+
+## Project Structure
+
+```
+zcbc-website/
+├── frontend/          # React frontend application (Vite + React 19)
+│   ├── src/
+│   │   ├── components/    # React components
+│   │   ├── assets/        # Static assets
+│   │   └── api.js         # API client for backend
+│   ├── public/            # Public assets
+│   └── .env.example       # Environment variables template
+│
+└── backend/           # Strapi CMS backend
+    └── church-cms/    # Headless CMS for content management
+```
+
+## Getting Started
+
+### Frontend Setup
+```bash
+cd frontend
+npm install
+cp .env.example .env    # Configure your environment variables
+npm run dev             # Start development server
+```
+
+### Backend Setup
+```bash
+cd backend/church-cms
+npm install
+npm run develop         # Start Strapi admin panel
+```
+
+## Environment Variables
+
+Copy `.env.example` to `.env` in the frontend directory and configure:
+- `VITE_API_BASE_URL` - Strapi API URL (default: http://localhost:1337/api)
+- `VITE_STRAPI_URL` - Strapi base URL (default: http://localhost:1337) 
 
 
 ## Features

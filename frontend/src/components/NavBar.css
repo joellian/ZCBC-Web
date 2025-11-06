@@ -1,0 +1,554 @@
+/* Navigation Bar Styles */
+.header-container {
+  background: linear-gradient(135deg, #092352 0%, #0a2a5c 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid #C25051;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible;
+}
+
+.header-container.expanded {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.main-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+/* Logo Section */
+.header-item.church-logo {
+  margin-right: 15px;
+}
+
+.header-item.church-logo img {
+  height: 60px;
+  width: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.header-item.church-logo img:hover {
+  transform: scale(1.05);
+}
+
+/* Church Name */
+.header-item.church-name {
+  flex-grow: 1;
+  margin-right: 30px;
+}
+
+.header-item.church-name a {
+  color: #C25051;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.header-item.church-name a:hover {
+  color: #ffffff;
+}
+
+/* Navigation Links */
+.header-item {
+  margin: 0 5px;
+  position: relative;
+}
+
+.header-item a {
+  color: #C25051;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: block;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-item a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.header-item a:hover::before {
+  left: 100%;
+}
+
+.header-item a:hover {
+  background-color: white;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: white;
+}
+
+.header-item a:active {
+  transform: translateY(0);
+}
+
+/* Special styling for active/current page */
+.header-item a.active {
+  background-color: #C25051;
+  color: white;
+}
+
+/* Expandable Menu Styles */
+.header-item.expandable {
+  position: relative;
+}
+
+.expandable-trigger {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.expand-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: inherit;
+}
+
+.header-container.expanded .expand-arrow {
+  font-size: 0.9rem;
+}
+
+.expand-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.header-item.expandable:hover .expandable-trigger,
+.header-item.expandable.active .expandable-trigger {
+  background-color: rgba(194, 80, 81, 0.3);
+  color: #ffffff;
+}
+
+.header-container.expanded .header-item.expandable.active .expandable-trigger {
+  background: linear-gradient(135deg, rgba(194, 80, 81, 0.4) 0%, rgba(168, 71, 71, 0.4) 100%);
+  box-shadow: 0 4px 15px rgba(194, 80, 81, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Expanded Menu Content */
+.expanded-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.expanded-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.expanded-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Expanded Header */
+.expanded-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 40px 30px;
+  background: linear-gradient(135deg, rgba(194, 80, 81, 0.08) 0%, rgba(9, 35, 82, 0.05) 100%);
+  border-bottom: 1px solid rgba(194, 80, 81, 0.1);
+}
+
+.header-content h2 {
+  margin: 0 0 8px 0;
+  color: #092352;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.header-content p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  max-width: 500px;
+}
+
+.header-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.church-icon {
+  font-size: 4rem;
+  color: #C25051;
+  opacity: 0.8;
+}
+
+/* Expanded Sections */
+.expanded-sections {
+  padding: 40px;
+}
+
+.sections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.section-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(194, 80, 81, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(194, 80, 81, 0.05) 0%, rgba(194, 80, 81, 0.02) 100%);
+  transition: left 0.4s ease;
+}
+
+.section-card:hover::before {
+  left: 0;
+}
+
+.section-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(194, 80, 81, 0.15);
+  border-color: rgba(194, 80, 81, 0.3);
+}
+
+.card-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #C25051 0%, #A84747 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.card-icon .icon {
+  font-size: 1.8rem;
+  filter: brightness(0) invert(1);
+}
+
+.card-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.card-content h3 {
+  margin: 0 0 8px 0;
+  color: #092352;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.card-content p {
+  margin: 0 0 12px 0;
+  color: #6c757d;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.card-arrow {
+  color: #C25051;
+  font-weight: 600;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.section-card:hover .card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Expanded Footer */
+.expanded-footer {
+  background: linear-gradient(135deg, rgba(9, 35, 82, 0.05) 0%, rgba(194, 80, 81, 0.08) 100%);
+  border-top: 1px solid rgba(194, 80, 81, 0.1);
+  padding: 30px 40px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-page-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #C25051;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  border: 2px solid #C25051;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.main-page-link:hover {
+  background-color: #C25051;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgb(250, 249, 249);
+}
+
+.footer-arrow {
+  transition: transform 0.3s ease;
+}
+
+.main-page-link:hover .footer-arrow {
+  transform: translateX(4px);
+}
+
+.footer-text {
+  flex: 1;
+  text-align: right;
+  margin-left: 20px;
+}
+
+.footer-text p {
+  margin: 0;
+  color: #6c757d;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* Overlay */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+ 
+  z-index: 5;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animation for expanded menu */
+@keyframes expandDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 600px;
+  }
+}
+
+.expanded-menu.show {
+  animation: expandDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .main-nav {
+    padding: 0 15px;
+  }
+  
+  .nav-items {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 0;
+  }
+  
+  .header-item.church-name {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .expanded-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  
+  .header-content h2 {
+    font-size: 1.6rem;
+  }
+  
+  .church-icon {
+    font-size: 3rem;
+    margin-top: 15px;
+  }
+  
+  .expanded-sections {
+    padding: 30px 20px;
+  }
+  
+  .sections-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .expanded-footer {
+    padding: 20px;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .footer-text {
+    text-align: center;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-nav {
+    padding: 0 10px;
+  }
+  
+  .header-item a {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .header-item.church-logo img {
+    height: 50px;
+  }
+  
+  .header-item.church-name a {
+    font-size: 1.1rem;
+  }
+  
+  .section-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .card-icon {
+    align-self: center;
+    margin-bottom: 10px;
+  }
+  
+  .expanded-header {
+    padding: 25px 15px;
+  }
+  
+  .expanded-sections {
+    padding: 25px 15px;
+  }
+  
+  .expanded-footer {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-items {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .header-item {
+    margin: 2px 0;
+    width: 100%;
+  }
+  
+  .header-item a {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .header-item.church-name {
+    order: -1;
+    margin-bottom: 15px;
+  }
+  
+  .header-item.church-logo {
+    order: -2;
+    margin-bottom: 10px;
+  }
+  
+  .header-content h2 {
+    font-size: 1.4rem;
+  }
+  
+  .header-content p {
+    font-size: 1rem;
+  }
+  
+  .main-page-link {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
