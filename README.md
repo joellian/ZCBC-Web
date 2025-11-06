@@ -20,6 +20,52 @@ zcbc-website/
     └── church-cms/    # Headless CMS for content management
 ```
 
+## Prerequisites
+
+**Node.js Version: 22.21.1 (LTS)**
+
+This project requires Node.js v22.21.1 for compatibility with Strapi CMS (backend). The correct version is specified in `.nvmrc` files throughout the project.
+
+### Using nvm (Recommended)
+If you have [nvm](https://github.com/nvm-sh/nvm) installed, the correct Node version will be automatically used:
+
+```bash
+# In the project root, run:
+nvm use
+
+# This will switch to Node v22.21.1 as specified in .nvmrc
+```
+
+### Manual Installation
+If you don't have nvm:
+1. Install [nvm](https://github.com/nvm-sh/nvm)
+2. Run `nvm install 22.21.1`
+3. Run `nvm use`
+
+### Auto-switch Node version (Optional)
+Add this to your `~/.zshrc` or `~/.bashrc` to automatically use the correct Node version when entering the project:
+
+```bash
+# Auto-load .nvmrc
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+```
+
 ## Getting Started
 
 ### Frontend Setup
