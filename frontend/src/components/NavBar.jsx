@@ -5,7 +5,6 @@ import './NavBar.css';
 const NavBar = () => {
     const location = useLocation();
     const [expandedMenu, setExpandedMenu] = useState(null);
-    const [isMobile, setIsMobile] = useState(false);
     const navRef = useRef(null);
     
     // About Us sections with descriptions
@@ -41,24 +40,9 @@ const NavBar = () => {
         return location.pathname === path;
     };
 
-    // Handle menu expansion
-    const handleMouseEnter = (menuName) => {
-        if (!isMobile) {
-            setExpandedMenu(menuName);
-        }
-    };
-
-    const handleMouseLeave = () => {
-        if (!isMobile) {
-            setExpandedMenu(null);
-        }
-    };
-
-    // Handle mobile menu click
+    // Handle menu expansion with click (for both mobile and desktop)
     const handleMenuClick = (menuName) => {
-        if (isMobile) {
-            setExpandedMenu(expandedMenu === menuName ? null : menuName);
-        }
+        setExpandedMenu(expandedMenu === menuName ? null : menuName);
     };
 
     // Handle smooth scroll to section
@@ -92,17 +76,6 @@ const NavBar = () => {
         };
     }, []);
 
-    // Handle window resize
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     return (
         <header className={`header-container ${expandedMenu ? 'expanded' : ''}`} ref={navRef}>
             <nav className="main-nav">
@@ -125,26 +98,21 @@ const NavBar = () => {
                     </li>
                     
                     {/* About Us Expandable */}
-                    <li 
+                    <li
                         className={`header-item expandable ${expandedMenu === 'about' ? 'active' : ''}`}
-                        onMouseEnter={() => handleMouseEnter('about')}
-                        onMouseLeave={handleMouseLeave}
                     >
-                        <Link 
-                            to="/about-us" 
+                        <div
                             className={`expandable-trigger ${isActive('/about-us') ? 'active' : ''}`}
                             onClick={(e) => {
-                                if (isMobile) {
-                                    e.preventDefault();
-                                    handleMenuClick('about');
-                                }
+                                e.preventDefault();
+                                handleMenuClick('about');
                             }}
                         >
                             About Us
                             <span className={`expand-arrow ${expandedMenu === 'about' ? 'rotated' : ''}`}>
                                 ▼
                             </span>
-                        </Link>
+                        </div>
                     </li>
 
                     <li className="header-item">

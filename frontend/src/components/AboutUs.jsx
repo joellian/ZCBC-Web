@@ -92,10 +92,9 @@ const AboutUs = () => {
                         <div className="leaders-grid">
                             {departmentLeaders.map((leader) => (
                                 <div key={leader.id} className="leader-card">
-                                    {console.log('Leader photo data:', leader.photo)}
-                                    {leader.photo?.data && (
+                                    {leader.photo && (
                                         <img
-                                            src={`${import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337'}${leader.photo.data.url}`}
+                                            src={`${import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337'}${leader.photo.url}`}
                                             alt={leader.name}
                                             className="leader-photo"
                                         />
