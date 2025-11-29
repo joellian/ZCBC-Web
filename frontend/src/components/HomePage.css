@@ -2,14 +2,89 @@
 .home-page {
     text-align: center;
     background-color: #092352;
-  
-  }
-  .home-page .header {
-    color:#C25051
-  }
-  .home-page .body {
-    color:#C25051
-  }
-  .home-page .events {
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.home-page .header {
     color: #C25051;
-  }
+    padding: 40px 20px;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.home-page .header h2 {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.home-page .body {
+    color: #C25051;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.home-page .events {
+    color: #C25051;
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Responsive breakpoints for HomePage */
+@media (max-width: 1024px) {
+    .home-page {
+        padding: 15px;
+    }
+
+    .home-page .header {
+        padding: 30px 15px;
+    }
+
+    .home-page .events {
+        padding: 25px 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-page {
+        padding: 10px;
+    }
+
+    .home-page .header {
+        padding: 25px 10px;
+        font-size: clamp(1.3rem, 5vw, 2rem);
+    }
+
+    .home-page .body {
+        padding: 15px 10px;
+    }
+
+    .home-page .events {
+        padding: 20px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-page {
+        padding: 5px;
+    }
+
+    .home-page .header {
+        padding: 20px 5px;
+        font-size: clamp(1.2rem, 6vw, 1.8rem);
+    }
+
+    .home-page .header h2 {
+        letter-spacing: 0.3px;
+    }
+
+    .home-page .body {
+        padding: 10px 5px;
+    }
+
+    .home-page .events {
+        padding: 15px 5px;
+    }
+}

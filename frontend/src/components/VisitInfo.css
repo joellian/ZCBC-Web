@@ -3,53 +3,148 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
-  }
-  .VisitInfo .service-detail {
-   
+    padding: 20px;
+    flex-direction: column;
+}
+
+.VisitInfo .service-detail {
     text-align: center;
     align-items: stretch;
-  }
-  .VisitInfo .visit-detail {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.VisitInfo .visit-detail {
     text-align: center;
-  }
-  .VisitInfo .card {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.VisitInfo .card {
     border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     margin: 20px 0;
-  }
-  .VisitInfo .card-body {
-    padding: 32px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.VisitInfo .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.VisitInfo .card-body {
+    padding: 40px;
     flex-wrap: column;
     justify-content: center;
-  
-  }
-  
-  .visitInfo .card-body iframe {
+}
+
+.visitInfo .card-body iframe {
     border-radius: 16px;
-    margin-bottom:18px;
-  }
-  
-  .visitInfo .card-body a {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 300px;
+}
+
+.visitInfo .card-body a {
     color: #007bff;
     text-decoration: none;
-  }
-  
-  .visitInfo .card-body a:hover {
+    transition: color 0.3s ease;
+}
+
+.visitInfo .card-body a:hover {
     text-decoration: underline;
-  }
-  .visitInfo .card-body .map-button {
+    color: #0056b3;
+}
+
+.visitInfo .card-body .map-button {
     background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-  }
-  .visitInfo .card-body .map-button:hover {
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    min-height: 48px;
+}
+
+.visitInfo .card-body .map-button:hover {
     background-color: #0056b3;
-  }
-  
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
+}
+
+.visitInfo .card-body .map-button:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .VisitInfo {
+        padding: 15px;
+    }
+
+    .VisitInfo .card-body {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .VisitInfo {
+        padding: 10px;
+    }
+
+    .VisitInfo .card {
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+
+    .VisitInfo .card-body {
+        padding: 25px 20px;
+    }
+
+    .visitInfo .card-body iframe {
+        min-height: 250px;
+        margin-bottom: 15px;
+    }
+
+    .visitInfo .card-body .map-button {
+        padding: 12px 24px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .VisitInfo {
+        padding: 5px;
+    }
+
+    .VisitInfo .card {
+        margin: 10px 0;
+        border-radius: 8px;
+    }
+
+    .VisitInfo .card-body {
+        padding: 20px 15px;
+    }
+
+    .visitInfo .card-body iframe {
+        min-height: 200px;
+        border-radius: 12px;
+    }
+
+    .visitInfo .card-body .map-button {
+        padding: 14px 20px;
+        font-size: 0.95rem;
+        width: 100%;
+    }
+}

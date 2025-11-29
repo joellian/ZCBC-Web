@@ -5,6 +5,7 @@ import './NavBar.css';
 const NavBar = () => {
     const location = useLocation();
     const [expandedMenu, setExpandedMenu] = useState(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navRef = useRef(null);
     
     // About Us sections with descriptions
@@ -132,25 +133,46 @@ const NavBar = () => {
     // Handle smooth scroll to section
     const handleSectionClick = (href, e) => {
         const [path, hash] = href.split('#');
-        
+
         if (location.pathname === path && hash) {
             e.preventDefault();
             const element = document.getElementById(hash);
             if (element) {
-                element.scrollIntoView({ 
+                element.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             }
         }
         setExpandedMenu(null);
+        setMobileMenuOpen(false);
     };
+
+    // Toggle mobile menu
+    const toggleMobileMenu = () => {
+        setMobileMenuOpen(!mobileMenuOpen);
+        setExpandedMenu(null);
+    };
+
+    // Prevent body scroll when mobile menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.classList.add('mobile-menu-open');
+        } else {
+            document.body.classList.remove('mobile-menu-open');
+        }
+
+        return () => {
+            document.body.classList.remove('mobile-menu-open');
+        };
+    }, [mobileMenuOpen]);
 
     // Close menu when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (navRef.current && !navRef.current.contains(event.target)) {
                 setExpandedMenu(null);
+                setMobileMenuOpen(false);
             }
         };
 
@@ -161,21 +183,35 @@ const NavBar = () => {
     }, []);
 
     return (
-        <header className={`header-container ${expandedMenu ? 'expanded' : ''}`} ref={navRef}>
+        <header className={`header-container ${expandedMenu ? 'expanded' : ''} ${mobileMenuOpen ? 'mobile-open' : ''}`} ref={navRef}>
             <nav className="main-nav">
-                <ul className="nav-items">
+                {/* Mobile Menu Toggle */}
+                <button
+                    className="mobile-menu-toggle"
+                    onClick={toggleMobileMenu}
+                    aria-label="Toggle mobile menu"
+                >
+                    <span className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+
+                <ul className={`nav-items ${mobileMenuOpen ? 'mobile-open' : ''}`}>
                     <li className="header-item church-logo">
-                        <Link to="/">
+                        <Link to="/" onClick={() => setMobileMenuOpen(false)}>
                             <img src="/zcbc-icon.png" alt="Zion Chin Baptist Church Logo" />
                         </Link>
                     </li>
                     <li className="header-item church-name">
-                        <Link to="/">ZION CHIN BAPTIST CHURCH</Link>
+                        <Link to="/" onClick={() => setMobileMenuOpen(false)}>ZION CHIN BAPTIST CHURCH</Link>
                     </li>    
                     <li className="header-item">
-                        <Link 
-                            to="/" 
+                        <Link
+                            to="/"
                             className={isActive('/') ? 'active' : ''}
+                            onClick={() => setMobileMenuOpen(false)}
                         >
                             Home
                         </Link>
@@ -185,8 +221,15 @@ const NavBar = () => {
                     <li
                         className={`header-item expandable ${expandedMenu === 'about' ? 'active' : ''}`}
                     >
+                        <Link
+                            to="/about-us"
+                            className={`expandable-trigger mobile-link ${isActive('/about-us') ? 'active' : ''}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            About Us
+                        </Link>
                         <div
-                            className={`expandable-trigger ${isActive('/about-us') ? 'active' : ''}`}
+                            className={`expandable-trigger desktop-trigger ${isActive('/about-us') ? 'active' : ''}`}
                             onClick={(e) => {
                                 e.preventDefault();
                                 handleMenuClick('about');
@@ -203,8 +246,15 @@ const NavBar = () => {
                     <li
                         className={`header-item expandable ${expandedMenu === 'sermons' ? 'active' : ''}`}
                     >
+                        <Link
+                            to="/sermons"
+                            className={`expandable-trigger mobile-link ${isActive('/sermons') ? 'active' : ''}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            Sermons
+                        </Link>
                         <div
-                            className={`expandable-trigger ${isActive('/sermons') ? 'active' : ''}`}
+                            className={`expandable-trigger desktop-trigger ${isActive('/sermons') ? 'active' : ''}`}
                             onClick={(e) => {
                                 e.preventDefault();
                                 handleMenuClick('sermons');
@@ -221,8 +271,15 @@ const NavBar = () => {
                     <li
                         className={`header-item expandable ${expandedMenu === 'visit' ? 'active' : ''}`}
                     >
+                        <Link
+                            to="/visit-us"
+                            className={`expandable-trigger mobile-link ${isActive('/visit-us') ? 'active' : ''}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            Visit Us
+                        </Link>
                         <div
-                            className={`expandable-trigger ${isActive('/visit-us') ? 'active' : ''}`}
+                            className={`expandable-trigger desktop-trigger ${isActive('/visit-us') ? 'active' : ''}`}
                             onClick={(e) => {
                                 e.preventDefault();
                                 handleMenuClick('visit');
@@ -239,6 +296,7 @@ const NavBar = () => {
                         <Link
                             to="/contact-us"
                             className={isActive('/contact-us') ? 'active' : ''}
+                            onClick={() => setMobileMenuOpen(false)}
                         >
                             Contact Us
                         </Link>
@@ -248,8 +306,15 @@ const NavBar = () => {
                     <li
                         className={`header-item expandable ${expandedMenu === 'giving' ? 'active' : ''}`}
                     >
+                        <Link
+                            to="/giving"
+                            className={`expandable-trigger mobile-link ${isActive('/giving') ? 'active' : ''}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            Giving
+                        </Link>
                         <div
-                            className={`expandable-trigger ${isActive('/giving') ? 'active' : ''}`}
+                            className={`expandable-trigger desktop-trigger ${isActive('/giving') ? 'active' : ''}`}
                             onClick={(e) => {
                                 e.preventDefault();
                                 handleMenuClick('giving');
@@ -304,7 +369,10 @@ const NavBar = () => {
                             <Link
                                 to="/about-us"
                                 className="main-page-link"
-                                onClick={() => setExpandedMenu(null)}
+                                onClick={() => {
+                                    setExpandedMenu(null);
+                                    setMobileMenuOpen(false);
+                                }}
                             >
                                 <span>Visit Complete About Us Page</span>
                                 <span className="footer-arrow">→</span>
@@ -357,7 +425,10 @@ const NavBar = () => {
                             <Link
                                 to="/sermons"
                                 className="main-page-link"
-                                onClick={() => setExpandedMenu(null)}
+                                onClick={() => {
+                                    setExpandedMenu(null);
+                                    setMobileMenuOpen(false);
+                                }}
                             >
                                 <span>View All Sermons</span>
                                 <span className="footer-arrow">→</span>
@@ -410,7 +481,10 @@ const NavBar = () => {
                             <Link
                                 to="/visit-us"
                                 className="main-page-link"
-                                onClick={() => setExpandedMenu(null)}
+                                onClick={() => {
+                                    setExpandedMenu(null);
+                                    setMobileMenuOpen(false);
+                                }}
                             >
                                 <span>Visit Us Page</span>
                                 <span className="footer-arrow">→</span>
@@ -463,7 +537,10 @@ const NavBar = () => {
                             <Link
                                 to="/giving"
                                 className="main-page-link"
-                                onClick={() => setExpandedMenu(null)}
+                                onClick={() => {
+                                    setExpandedMenu(null);
+                                    setMobileMenuOpen(false);
+                                }}
                             >
                                 <span>Give Now</span>
                                 <span className="footer-arrow">→</span>
@@ -477,7 +554,15 @@ const NavBar = () => {
             </div>
 
             {/* Overlay */}
-            {expandedMenu && <div className="nav-overlay" onClick={() => setExpandedMenu(null)}></div>}
+            {(expandedMenu || mobileMenuOpen) && (
+                <div
+                    className="nav-overlay"
+                    onClick={() => {
+                        setExpandedMenu(null);
+                        setMobileMenuOpen(false);
+                    }}
+                ></div>
+            )}
         </header>
     );
 }

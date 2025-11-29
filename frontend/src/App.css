@@ -5,203 +5,180 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
 html, body {
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
+
 /* Root Styles */
 #root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   color: black;
   background-color: white;
   width: 100%;
-  height: 100%; 
-  
+  min-height: 100vh;
 }
-/* Header Styles */
-.header-container {
+
+.App {
   width: 100%;
-  height: auto;
-  background-color: #D6DEEC;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 0px;
-  margin: 0;
-
-}
-.header-container ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-
-}
-.header-container li {
-  display: inline;
-  margin: 0 0px;
-}
-.header-container li a {
-  display: block;
-  color: #C25051;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-.header-container li a:hover {
-  color: #361717;
-}
-.header-item.church-name a {
-  display: flex;
-  padding: 16px;
-  text-decoration: none;
-  color: #C25051;
-  font-weight: bold;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-.header-item.church-name a:hover {
-  color: #361717;
-}
-.header-item:nth-of-type(1){
-  flex:1
-}
-.header-item:nth-of-type(2){
-  flex:1
-}
-.header-item.church-logo img {
-  height: auto;
-  width: auto;
-  max-height: 80px;
-  object-fit: contain;
-
-}
-/* Home Page */
-.home-page {
-  text-align: center;
-  background-color: #092352;
-
-}
-.home-page .header {
-  color:#C25051
-}
-.home-page .body {
-  color:#C25051
-}
-/* Visit Info Card Styles */
-.VisitInfo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-}
-.VisitInfo .service-detail {
- 
-  text-align: center;
-  align-items: stretch;
-}
-.VisitInfo .visit-detail {
-  text-align: center;
-}
-.VisitInfo .card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin: 20px 0;
-}
-.VisitInfo .card-body {
-  padding: 32px;
-  flex-wrap: column;
-  justify-content: center;
-
-}
-
-.visitInfo .card-body iframe {
-  border-radius: 16px;
-  margin-bottom:18px;
-}
-
-.visitInfo .card-body a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.visitInfo .card-body a:hover {
-  text-decoration: underline;
-}
-.visitInfo .card-body .map-button {
-  background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-}
-.visitInfo .card-body .map-button:hover {
-  background-color: #0056b3;
-}
-/* Visit US */
-
-/* Contact Us*/
-.contact-form {
-  display: flex;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #092352;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.contact-form .form-header {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #C25051;
-}
-
-.contact-form .form-header h4 {
-  color: #C25051;
-}
-
-.contact-form .form-items {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  
 }
-
-.contact-form .form-group {
-  margin-bottom: 15px;
-}
-
-.contact-form .form-group label {
+/* Images - Responsive by default */
+img {
+  max-width: 100%;
+  height: auto;
   display: block;
-  margin-bottom: 5px;
-  color: #C25051;
 }
 
-.contact-form .form-group input,
-.contact-form .form-group textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.contact-form .form-group input[type="submit"] {
-  background-color: #A84747;
-  color: white;
-  border: none;
+/* Buttons - Touch-friendly defaults */
+button {
+  min-height: 44px;
+  min-width: 44px;
   cursor: pointer;
-  padding: 10px 20px;
-  border-radius: 4px;
 }
 
-.contact-form .form-group input[type="submit"]:hover {
-  background-color: #C25051;
+/* Links - Accessible touch targets */
+a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+/* Responsive Typography */
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.2;
 }
 
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.4;
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.4;
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.6;
+}
+
+/* Responsive Utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Global Responsive Breakpoints */
+@media (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  /* Increase touch targets on mobile */
+  button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  a {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 5px;
+  }
+}
+
+/* Prevent text selection on buttons for better mobile UX */
+button, .button {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Smooth scrolling for anchor links */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Accessibility - Focus styles */
+*:focus-visible {
+  outline: 2px solid #C25051;
+  outline-offset: 2px;
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices */
+  a:hover, button:hover {
+    transform: none;
+  }
+
+  /* Add active state for better touch feedback */
+  a:active, button:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
+/* Prevent double-tap zoom on buttons and links */
+button, a, input[type="submit"] {
+  touch-action: manipulation;
+}
+
+/* Improve form input experience on mobile */
+input, textarea, select {
+  font-size: 16px; /* Prevents zoom on iOS */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Better scrolling on iOS */
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
