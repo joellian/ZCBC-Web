@@ -211,7 +211,10 @@ const NavBar = () => {
                         <Link
                             to="/"
                             className={isActive('/') ? 'active' : ''}
-                            onClick={() => setMobileMenuOpen(false)}
+                            onClick={() => {
+                                setMobileMenuOpen(false);
+                                setExpandedMenu(null);
+                            }}
                         >
                             Home
                         </Link>
@@ -296,7 +299,10 @@ const NavBar = () => {
                         <Link
                             to="/contact-us"
                             className={isActive('/contact-us') ? 'active' : ''}
-                            onClick={() => setMobileMenuOpen(false)}
+                            onClick={() => {
+                                setMobileMenuOpen(false);
+                                setExpandedMenu(null);
+                            }}
                         >
                             Contact Us
                         </Link>
@@ -552,17 +558,6 @@ const NavBar = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Overlay */}
-            {(expandedMenu || mobileMenuOpen) && (
-                <div
-                    className="nav-overlay"
-                    onClick={() => {
-                        setExpandedMenu(null);
-                        setMobileMenuOpen(false);
-                    }}
-                ></div>
-            )}
         </header>
     );
 }

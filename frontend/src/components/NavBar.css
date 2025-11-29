@@ -29,16 +29,17 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 /* Logo Section */
 .header-item.church-logo {
-  margin-right: 15px;
+  margin-right: 10px;
+  flex-shrink: 0;
 }
 
 .header-item.church-logo img {
-  height: 60px;
+  height: 55px;
   width: auto;
   border-radius: 8px;
   transition: transform 0.3s ease;
@@ -50,22 +51,25 @@
 
 /* Church Name */
 .header-item.church-name {
-  flex-grow: 1;
-  margin-right: 30px;
+  flex-grow: 0;
+  margin-right: 20px;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .header-item.church-name a {
   color: #C25051;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-decoration: none;
   letter-spacing: 1px;
   transition: all 0.3s ease;
-  padding: 15px 20px;
+  padding: 15px 12px;
   display: block;
   border-radius: 25px;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .header-item.church-name a::before {
@@ -91,21 +95,23 @@
 
 /* Navigation Links */
 .header-item {
-  margin: 0 5px;
+  margin: 0 2px;
   position: relative;
+  flex-shrink: 0;
 }
 
 .header-item a {
   color: #C25051;
   text-decoration: none;
-  padding: 15px 20px;
+  padding: 15px 12px;
   display: block;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.95rem;
   border-radius: 25px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .header-item a::before {
@@ -155,18 +161,18 @@
 }
 
 .expandable-trigger {
-  display: flex !important;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: #C25051;
-  padding: 15px 20px;
+  padding: 15px 12px;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.95rem;
   border-radius: 25px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .expandable-trigger::before {
@@ -444,7 +450,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.3);
   z-index: 998;
   opacity: 0;
   animation: fadeIn 0.3s ease forwards;
@@ -558,37 +564,30 @@
     height: 100vh;
     background: linear-gradient(180deg, #092352 0%, #0a2a5c 100%);
     flex-direction: column;
-    align-items: stretch;
-    padding: 70px 0 20px;
+    align-items: center;
+    padding: 0;
     overflow-y: auto;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
     z-index: 1000;
   }
 
-  /* In header: show only logo and church name */
-  .nav-items:not(.mobile-open) > .header-item:not(.church-logo):not(.church-name) {
+  /* In header: show only church name, hide logo and nav items */
+  .nav-items:not(.mobile-open) > .header-item:not(.church-name) {
     display: none;
   }
 
-  /* In header: center logo and church name in a row */
+  /* In header: hide logo in mobile view */
   .nav-items:not(.mobile-open) .header-item.church-logo {
-    margin: 0 8px 0 0;
-    display: flex;
-    justify-content: center;
-    flex-shrink: 0;
+    display: none !important;
   }
 
-  .nav-items:not(.mobile-open) .header-item.church-logo img {
-    height: 65px;
-    width: auto;
-  }
-
+  /* In header: center church name */
   .nav-items:not(.mobile-open) .header-item.church-name {
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 1;
-    max-width: calc(100% - 75px);
+    max-width: 100%;
   }
 
   .nav-items:not(.mobile-open) .header-item.church-name a {
@@ -601,8 +600,25 @@
     word-wrap: break-word;
   }
 
-  /* In sidebar: hide logo and church name */
-  .nav-items.mobile-open .header-item.church-logo,
+  /* In sidebar: show logo at top, hide church name */
+  .nav-items.mobile-open .header-item.church-logo {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    border: none;
+    margin: 0;
+    background: transparent;
+    width: 100%;
+    order: -1;
+  }
+
+  .nav-items.mobile-open .header-item.church-logo img {
+    height: 120px;
+    width: auto;
+    display: block;
+  }
+
   .nav-items.mobile-open .header-item.church-name {
     display: none !important;
   }
@@ -725,20 +741,12 @@
   }
 
   .main-nav {
-    padding: 10px 60px;
+    padding: 10px 20px;
     min-height: 75px;
   }
 
-  .nav-items:not(.mobile-open) .header-item.church-logo {
-    margin-right: 8px;
-  }
-
-  .nav-items:not(.mobile-open) .header-item.church-logo img {
-    height: 60px;
-  }
-
   .nav-items:not(.mobile-open) .header-item.church-name {
-    max-width: calc(100% - 70px);
+    max-width: 100%;
   }
 
   .nav-items:not(.mobile-open) .header-item.church-name a {
@@ -796,20 +804,12 @@
   }
 
   .main-nav {
-    padding: 10px 55px;
+    padding: 10px 20px;
     min-height: 75px;
   }
 
-  .nav-items:not(.mobile-open) .header-item.church-logo {
-    margin-right: 6px;
-  }
-
-  .nav-items:not(.mobile-open) .header-item.church-logo img {
-    height: 58px;
-  }
-
   .nav-items:not(.mobile-open) .header-item.church-name {
-    max-width: calc(100% - 66px);
+    max-width: 100%;
   }
 
   .nav-items:not(.mobile-open) .header-item.church-name a {
@@ -840,20 +840,12 @@
 /* Extra small screens */
 @media (max-width: 360px) {
   .main-nav {
-    padding: 8px 50px;
+    padding: 8px 20px;
     min-height: 75px;
   }
 
-  .nav-items:not(.mobile-open) .header-item.church-logo {
-    margin-right: 5px;
-  }
-
-  .nav-items:not(.mobile-open) .header-item.church-logo img {
-    height: 52px;
-  }
-
   .nav-items:not(.mobile-open) .header-item.church-name {
-    max-width: calc(100% - 58px);
+    max-width: 100%;
   }
 
   .nav-items:not(.mobile-open) .header-item.church-name a {
