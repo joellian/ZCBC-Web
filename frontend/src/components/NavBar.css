@@ -605,7 +605,7 @@
     display: flex !important;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
+    padding: 30px 45px;
     border: none;
     margin: 0;
     background: transparent;
@@ -614,7 +614,7 @@
   }
 
   .nav-items.mobile-open .header-item.church-logo img {
-    height: 120px;
+    height: 155px;
     width: auto;
     display: block;
   }
