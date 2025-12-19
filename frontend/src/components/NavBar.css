@@ -1,6 +1,6 @@
 /* Navigation Bar Styles */
 .header-container {
-  background: linear-gradient(135deg, #092352 0%, #0a2a5c 100%);
+  background: #d6deed;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 0;
@@ -88,8 +88,8 @@
 }
 
 .header-item.church-name a:hover {
-  background-color: white;
-  color: #092352;
+  background-color: #092352;
+  color: white;
   transform: translateY(-2px);
 }
 
@@ -130,10 +130,10 @@
 }
 
 .header-item a:hover {
-  background-color: white;
-  color: #ffffff;
+  background-color: #092352;
+  color: white;
   transform: translateY(-2px);
-  box-shadow: white;
+  box-shadow: 0 4px 12px rgba(9, 35, 82, 0.3);
 }
 
 .header-item a:active {
@@ -142,8 +142,9 @@
 
 /* Special styling for active/current page */
 .header-item a.active {
-  background-color: #C25051;
-  color: white;
+  background-color: rgba(194, 80, 81, 0.2);
+  color: #C25051;
+  font-weight: 700;
 }
 
 /* Expandable Menu Styles */
@@ -205,20 +206,23 @@
 }
 
 .expandable-trigger:hover {
-  background-color: white;
-  color: #092352;
+  background-color: #092352;
+  color: white;
   transform: translateY(-2px);
 }
 
 .header-item.expandable.active .expandable-trigger {
-  background-color: rgba(194, 80, 81, 0.3);
-  color: #ffffff;
+  background-color: rgba(194, 80, 81, 0.2);
+  color: #C25051;
+  font-weight: 700;
 }
 
 .header-container.expanded .header-item.expandable.active .expandable-trigger {
   background: linear-gradient(135deg, rgba(194, 80, 81, 0.4) 0%, rgba(168, 71, 71, 0.4) 100%);
   box-shadow: 0 4px 15px rgba(194, 80, 81, 0.3);
   transform: translateY(-2px);
+  color: #C25051;
+  font-weight: 700;
 }
 
 /* Expanded Menu Content */
@@ -562,7 +566,7 @@
     width: 280px;
     max-width: 85vw;
     height: 100vh;
-    background: linear-gradient(180deg, #092352 0%, #0a2a5c 100%);
+    background: #d6deed;
     flex-direction: column;
     align-items: center;
     padding: 0;
@@ -653,7 +657,9 @@
   }
 
   .nav-items.mobile-open .header-item a.active {
-    background-color: rgba(194, 80, 81, 0.3) !important;
+    background-color: rgba(194, 80, 81, 0.2) !important;
+    color: #C25051 !important;
+    font-weight: 700;
   }
 
   /* Show mobile link only in sidebar, hide desktop trigger */
@@ -681,7 +687,9 @@
   }
 
   .nav-items.mobile-open .expandable-trigger.mobile-link.active {
-    background-color: rgba(194, 80, 81, 0.3) !important;
+    background-color: rgba(194, 80, 81, 0.2) !important;
+    color: #C25051 !important;
+    font-weight: 700;
   }
 
   /* Hide expanded menus in mobile - use simple navigation instead */

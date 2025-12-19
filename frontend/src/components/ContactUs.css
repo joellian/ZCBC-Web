@@ -1,12 +1,52 @@
-/* Contact Us*/
+/* Contact Us Page */
+.contact-us-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contact Header */
+.contact-header {
+    background: linear-gradient(135deg, #092352 0%, #0a2a5c 100%);
+    padding: 60px 40px;
+    text-align: center;
+    color: white;
+}
+
+.contact-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 20px 0;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.contact-header p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* Contact Form Section */
+.contact-form-section {
+    background-color: #d6deed;
+    flex: 1;
+    padding: 60px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contact Form */
 .contact-form {
     display: flex;
-    max-width: 600px;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 30px;
-    background-color: #092352;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 40px;
 }
 
 .contact-form .form-header {
@@ -86,9 +126,24 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .contact-header {
+        padding: 40px 20px;
+    }
+
+    .contact-header h2 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .contact-header p {
+        font-size: clamp(0.9rem, 3vw, 1.1rem);
+    }
+
+    .contact-form-section {
+        padding: 40px 15px;
+    }
+
     .contact-form {
-        padding: 25px 20px;
-        margin: 10px;
+        padding: 30px 20px;
     }
 
     .contact-form .form-header h4 {
@@ -107,10 +162,20 @@
 }
 
 @media (max-width: 480px) {
+    .contact-header {
+        padding: 30px 15px;
+    }
+
+    .contact-header h2 {
+        margin-bottom: 15px;
+    }
+
+    .contact-form-section {
+        padding: 30px 10px;
+    }
+
     .contact-form {
         padding: 20px 15px;
-        margin: 5px;
-        border-radius: 8px;
     }
 
     .contact-form .form-header {

@@ -38,76 +38,84 @@ const ContactUs = () => {
     };
 
     return (
-        <div className="contact-form">
-            <div className="form-header">
-                <h4>Contact Us</h4>
-                {submitStatus === 'success' && (
-                    <p style={{ color: '#4CAF50', marginTop: '10px' }}>
-                        Thank you! Your message has been sent successfully.
-                    </p>
-                )}
-                {submitStatus === 'error' && (
-                    <p style={{ color: '#f44336', marginTop: '10px' }}>
-                        Sorry, there was an error sending your message. Please try again.
-                    </p>
-                )}
+        <div className="contact-us-page">
+            <div className="contact-header">
+                <h2>GET IN TOUCH</h2>
+                <p>Have a question, need to speak with our pastor, or get in touch with someone on staff? Simply fill out the form below or utilize the information listed and we'll be in touch shortly</p>
             </div>
-            <div className="form-items">
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="name">Your Name (required)</label>
-                        <input 
-                            type="text" 
-                            id="name" 
-                            name="name" 
-                            value={formData.name}
-                            onChange={handleChange}
-                            placeholder="Enter your full name" 
-                            required 
-                        />
+            <div className="contact-form-section">
+                <div className="contact-form">
+                    <div className="form-header">
+                        <h4>Contact Us</h4>
+                        {submitStatus === 'success' && (
+                            <p style={{ color: '#4CAF50', marginTop: '10px' }}>
+                                Thank you! Your message has been sent successfully.
+                            </p>
+                        )}
+                        {submitStatus === 'error' && (
+                            <p style={{ color: '#f44336', marginTop: '10px' }}>
+                                Sorry, there was an error sending your message. Please try again.
+                            </p>
+                        )}
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Your Email (required)</label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email" 
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder="Enter your email address" 
-                            required 
-                        />
+                    <div className="form-items">
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="name">Your Name (required)</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    placeholder="Enter your full name"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Your Email (required)</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="Enter your email address"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="subject">Subject</label>
+                                <input
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    placeholder="What is your message about?"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="message">Your Message</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    placeholder="Enter your message here..."
+                                    rows="4"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    type="submit"
+                                    value={isSubmitting ? "Sending..." : "Submit"}
+                                    disabled={isSubmitting}
+                                />
+                            </div>
+                        </form>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="subject">Subject</label>
-                        <input 
-                            type="text" 
-                            id="subject" 
-                            name="subject" 
-                            value={formData.subject}
-                            onChange={handleChange}
-                            placeholder="What is your message about?" 
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="message">Your Message</label>
-                        <textarea 
-                            id="message" 
-                            name="message" 
-                            value={formData.message}
-                            onChange={handleChange}
-                            placeholder="Enter your message here..."
-                            rows="4"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <input 
-                            type="submit" 
-                            value={isSubmitting ? "Sending..." : "Submit"} 
-                            disabled={isSubmitting}
-                        />
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     );
