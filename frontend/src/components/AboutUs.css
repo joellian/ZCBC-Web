@@ -1,181 +1,603 @@
 /* About Us Page Styles */
 .about-us {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background: linear-gradient(135deg, #092352 0%, #0a2a5c 100%);
-  color: #C25051;
-  min-height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #092352 0%, #0a2a5c 100%);
 }
 
-.about-us section {
-  margin-bottom: 40px;
-  padding: 30px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Page Header */
+.about-header {
+    background: linear-gradient(135deg, #092352 0%, #0d3366 100%);
+    padding: 60px 40px;
+    text-align: center;
+    color: white;
 }
 
-.about-us h2 {
-  color: #C25051;
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  text-align: center;
-  border-bottom: 3px solid #A84747;
-  padding-bottom: 10px;
+.about-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 20px 0;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #C25051;
 }
 
-.about-us h3 {
-  color: #C25051;
-  font-size: 1.8rem;
-  margin: 30px 0 20px 0;
-  text-align: center;
+.about-header p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
 }
 
-.about-us p {
-  line-height: 1.6;
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  text-align: justify;
+/* Section Content Container */
+.about-us .section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+/* Section Headers */
+.about-us section h2 {
+    color: #C25051;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    text-align: center;
+    margin: 0 0 10px 0;
+    letter-spacing: 1px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    margin: 0 0 30px 0;
+}
+
+.section-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 40px;
+}
+
+/* Who We Are Section */
+.who-we-are {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.value-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 30px 25px;
+    text-align: center;
+    border: 1px solid rgba(194, 80, 81, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(194, 80, 81, 0.2);
+}
+
+.value-card h4 {
+    color: #C25051;
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
+}
+
+.value-card p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* Leadership Section */
 .leadership {
-  background: linear-gradient(135deg, rgba(194, 80, 81, 0.1) 0%, rgba(168, 71, 71, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(194, 80, 81, 0.1) 0%, rgba(168, 71, 71, 0.1) 100%);
 }
 
 .department-group {
-  margin-bottom: 40px;
+    margin-bottom: 50px;
+}
+
+.department-group h3 {
+    color: #C25051;
+    font-size: 1.6rem;
+    text-align: center;
+    margin: 0 0 30px 0;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(194, 80, 81, 0.3);
 }
 
 .leaders-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
 .leader-card {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 25px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(194, 80, 81, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(194, 80, 81, 0.2);
 }
 
 .leader-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(194, 80, 81, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(194, 80, 81, 0.2);
 }
 
 .leader-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 auto 20px;
-  border: 4px solid #C25051;
-  display: block;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 4px solid #C25051;
+    display: block;
+}
+
+.leader-photo-placeholder {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #C25051 0%, #A84747 100%);
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+}
+
+.leader-photo-placeholder span {
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
 }
 
 .leader-info h4 {
-  color: #C25051;
-  font-size: 1.4rem;
-  margin-bottom: 8px;
+    color: white;
+    font-size: 1.4rem;
+    margin: 0 0 8px 0;
 }
 
 .leader-title {
-  color: #A84747;
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  font-style: italic;
+    color: #C25051;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 15px 0;
+    font-style: italic;
 }
 
-.leader-info p {
-  text-align: left;
-  font-size: 0.95rem;
-  margin-bottom: 10px;
+.leader-bio {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 15px 0;
 }
 
-.leader-info a {
-  color: #C25051;
-  text-decoration: none;
-  font-weight: 500;
-  border: 1px solid #C25051;
-  padding: 8px 16px;
-  border-radius: 20px;
-  display: inline-block;
-  margin-top: 10px;
-  transition: all 0.3s ease;
+.leader-email {
+    display: inline-block;
+    color: #C25051;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 8px 20px;
+    border: 1px solid #C25051;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
-.leader-info a:hover {
-  background-color: #C25051;
-  color: white;
+.leader-email:hover {
+    background: #C25051;
+    color: white;
 }
 
-/* Section-specific styling */
-.who-we-are {
-  background: linear-gradient(135deg, rgba(9, 35, 82, 0.3) 0%, rgba(194, 80, 81, 0.1) 100%);
+.leaders-placeholder {
+    text-align: center;
 }
 
+.placeholder-note {
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    margin-top: 30px;
+}
+
+/* Our Story Section */
 .our-story {
-  background: linear-gradient(135deg, rgba(194, 80, 81, 0.1) 0%, rgba(9, 35, 82, 0.3) 100%);
+    background: rgba(255, 255, 255, 0.03);
 }
 
+.timeline {
+    max-width: 800px;
+    margin: 50px auto 0;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #C25051, #A84747);
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.timeline-year {
+    flex: 0 0 80px;
+    color: #C25051;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: right;
+    padding-right: 30px;
+}
+
+.timeline-content {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin-left: 30px;
+    position: relative;
+    border: 1px solid rgba(194, 80, 81, 0.2);
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: #C25051;
+    border-radius: 50%;
+    border: 3px solid #092352;
+}
+
+.timeline-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* What We Believe Section */
+.what-we-believe {
+    background: linear-gradient(135deg, rgba(9, 35, 82, 0.5) 0%, rgba(194, 80, 81, 0.1) 100%);
+}
+
+.beliefs-list {
+    max-width: 800px;
+    margin: 40px auto 0;
+}
+
+.belief-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(194, 80, 81, 0.2);
+    transition: all 0.3s ease;
+}
+
+.belief-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(194, 80, 81, 0.4);
+}
+
+.belief-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: rgba(194, 80, 81, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C25051;
+}
+
+.belief-item p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* What We Do Section */
 .what-we-do {
-  background: linear-gradient(135deg, rgba(168, 71, 71, 0.1) 0%, rgba(9, 35, 82, 0.2) 100%);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.ministries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.ministry-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 35px 30px;
+    text-align: center;
+    border: 1px solid rgba(194, 80, 81, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ministry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(194, 80, 81, 0.2);
+}
+
+.ministry-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.ministry-card h4 {
+    color: #C25051;
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
+}
+
+.ministry-card p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* CTA Section */
+.about-cta {
+    background: linear-gradient(135deg, #C25051 0%, #A84747 100%);
+    text-align: center;
+}
+
+.about-cta h2 {
+    color: white !important;
+    margin-bottom: 15px;
+}
+
+.about-cta > .section-content > p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.cta-btn.primary {
+    background-color: white;
+    color: #C25051;
+}
+
+.cta-btn.primary:hover {
+    background-color: #092352;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.cta-btn.secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.cta-btn.secondary:hover {
+    background-color: white;
+    color: #C25051;
+    transform: translateY(-2px);
 }
 
 /* Loading and Error States */
 .loading, .error {
-  text-align: center;
-  padding: 40px;
-  font-size: 1.2rem;
-  color: #C25051;
-  background-color: #092352;
-  min-height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    text-align: center;
+    padding: 60px 40px;
+    font-size: 1.2rem;
+    color: #C25051;
+    background: linear-gradient(135deg, #092352 0%, #0a2a5c 100%);
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .error {
-  color: #ff6b6b;
+    color: #ff6b6b;
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .timeline::before {
+        left: 70px;
+    }
+
+    .timeline-year {
+        flex: 0 0 70px;
+        font-size: 1.1rem;
+    }
+}
+
 @media (max-width: 768px) {
-  .about-us {
-    padding: 10px;
-  }
-  
-  .about-us section {
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .leaders-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  
-  .leader-card {
-    padding: 20px;
-  }
-  
-  .leader-photo {
-    width: 120px;
-    height: 120px;
-  }
-  
-  .about-us h2 {
-    font-size: 1.8rem;
-  }
-  
-  .about-us h3 {
-    font-size: 1.5rem;
-  }
+    .about-header {
+        padding: 40px 20px;
+    }
+
+    .about-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .about-us .section-content {
+        padding: 40px 20px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .value-card {
+        padding: 25px 20px;
+    }
+
+    .leaders-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .leader-card {
+        padding: 25px;
+    }
+
+    .leader-photo,
+    .leader-photo-placeholder {
+        width: 120px;
+        height: 120px;
+    }
+
+    .timeline {
+        margin-left: 0;
+    }
+
+    .timeline::before {
+        left: 15px;
+    }
+
+    .timeline-year {
+        flex: 0 0 auto;
+        position: absolute;
+        left: 40px;
+        top: -25px;
+        background: #092352;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+    }
+
+    .timeline-item {
+        flex-direction: column;
+        padding-left: 40px;
+        margin-bottom: 40px;
+    }
+
+    .timeline-content {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .timeline-content::before {
+        left: -32px;
+    }
+
+    .ministries-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .ministry-card {
+        padding: 30px 25px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-header {
+        padding: 30px 15px;
+    }
+
+    .about-us .section-content {
+        padding: 30px 15px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .value-card {
+        padding: 20px 15px;
+    }
+
+    .leader-photo,
+    .leader-photo-placeholder {
+        width: 100px;
+        height: 100px;
+    }
+
+    .leader-photo-placeholder span {
+        font-size: 2.5rem;
+    }
+
+    .belief-item {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .belief-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .ministry-card {
+        padding: 25px 20px;
+    }
+
+    .ministry-icon {
+        font-size: 2.5rem;
+    }
+
+    .cta-btn {
+        padding: 12px 28px;
+        font-size: 1rem;
+    }
 }

@@ -51,4 +51,67 @@ export const leadersApi = {
   }
 };
 
+export const sermonsApi = {
+  // Get all sermons
+  getSermons: async () => {
+    try {
+      const response = await api.get('/sermons?populate=*');
+      console.log('Sermons API response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching sermons:', error);
+      throw error;
+    }
+  },
+
+  // Get sermon by ID
+  getSermonById: async (id) => {
+    try {
+      const response = await api.get(`/sermons/${id}?populate=*`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching sermon:', error);
+      throw error;
+    }
+  },
+
+  // Get sermons by series
+  getSermonsBySeries: async (series) => {
+    try {
+      const response = await api.get(`/sermons?filters[series][$eq]=${series}&populate=*`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching sermons by series:', error);
+      throw error;
+    }
+  }
+};
+
+export const givingApi = {
+  // Get giving page content
+  getGivingContent: async () => {
+    try {
+      const response = await api.get('/giving?populate=*');
+      console.log('Giving API response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching giving content:', error);
+      throw error;
+    }
+  }
+};
+
+export const contactApi = {
+  // Submit contact form
+  submitContact: async (formData) => {
+    try {
+      const response = await api.post('/contacts', { data: formData });
+      return response.data;
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      throw error;
+    }
+  }
+};
+
 export default api;

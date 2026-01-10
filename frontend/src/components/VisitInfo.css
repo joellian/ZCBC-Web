@@ -1,150 +1,360 @@
-/* Visit Info Card Styles */
-.VisitInfo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    flex-direction: column;
-}
-
-.VisitInfo .service-detail {
-    text-align: center;
-    align-items: stretch;
+/* Visit Info Page Styles */
+.visit-info {
     width: 100%;
-    max-width: 1200px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #092352 0%, #0a2a5c 100%);
 }
 
-.VisitInfo .visit-detail {
+/* Header Section */
+.visit-header {
+    background: linear-gradient(135deg, #092352 0%, #0d3366 100%);
+    padding: 60px 40px;
     text-align: center;
-    width: 100%;
-    max-width: 1200px;
+    color: white;
 }
 
-.VisitInfo .card {
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    margin: 20px 0;
+.visit-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 20px 0;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #C25051;
+}
+
+.visit-header p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* Section Content Container */
+.section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+/* Section Headers */
+.visit-info section h2 {
+    color: #C25051;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    text-align: center;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* Service Times Section */
+.service-times {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.times-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.time-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: center;
+    border: 1px solid rgba(194, 80, 81, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.VisitInfo .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+.time-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(194, 80, 81, 0.2);
 }
 
-.VisitInfo .card-body {
-    padding: 40px;
-    flex-wrap: column;
-    justify-content: center;
-}
-
-.visitInfo .card-body iframe {
-    border-radius: 16px;
+.time-icon {
+    color: #C25051;
     margin-bottom: 20px;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    min-height: 300px;
 }
 
-.visitInfo .card-body a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.visitInfo .card-body a:hover {
-    text-decoration: underline;
-    color: #0056b3;
-}
-
-.visitInfo .card-body .map-button {
-    background-color: #007bff;
+.time-card h3 {
     color: white;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 0 0 15px 0;
+}
+
+.time-card .time {
+    color: #C25051;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.time-card .time-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* What to Expect Section */
+.what-to-expect {
+    background: linear-gradient(135deg, rgba(194, 80, 81, 0.1) 0%, rgba(168, 71, 71, 0.1) 100%);
+}
+
+.expect-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.expect-item {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.expect-number {
+    width: 50px;
+    height: 50px;
+    background: #C25051;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 20px;
+}
+
+.expect-item h4 {
+    color: white;
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
+}
+
+.expect-item p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Location Section */
+.location-section {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.location-subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 1.1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    margin-bottom: 40px;
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.address-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.address-card,
+.contact-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid rgba(194, 80, 81, 0.3);
+}
+
+.address-card h3,
+.contact-card h3 {
+    color: #C25051;
+    font-size: 1.3rem;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(194, 80, 81, 0.3);
+}
+
+.address-details p,
+.contact-details p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.address-details strong,
+.contact-details strong {
+    color: #C25051;
+}
+
+.directions-btn {
     display: inline-block;
-    min-height: 48px;
+    margin-top: 20px;
+    padding: 12px 28px;
+    background-color: #C25051;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
-.visitInfo .card-body .map-button:hover {
-    background-color: #0056b3;
+.directions-btn:hover {
+    background-color: #A84747;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
+    box-shadow: 0 4px 15px rgba(194, 80, 81, 0.4);
 }
 
-.visitInfo .card-body .map-button:active {
-    transform: translateY(0);
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.map-container iframe {
+    display: block;
+}
+
+/* CTA Section */
+.visit-cta {
+    background: linear-gradient(135deg, #C25051 0%, #A84747 100%);
+    text-align: center;
+}
+
+.visit-cta h2 {
+    color: white !important;
+    margin-bottom: 15px;
+}
+
+.visit-cta p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background-color: white;
+    color: #C25051;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+    background-color: #092352;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .VisitInfo {
-        padding: 15px;
+    .location-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
 
-    .VisitInfo .card-body {
-        padding: 30px;
+    .address-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .address-card,
+    .contact-card {
+        flex: 1;
+        min-width: 280px;
     }
 }
 
 @media (max-width: 768px) {
-    .VisitInfo {
-        padding: 10px;
+    .visit-header {
+        padding: 40px 20px;
     }
 
-    .VisitInfo .card {
-        margin: 15px 0;
-        border-radius: 10px;
+    .section-content {
+        padding: 40px 20px;
     }
 
-    .VisitInfo .card-body {
-        padding: 25px 20px;
+    .times-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 
-    .visitInfo .card-body iframe {
-        min-height: 250px;
-        margin-bottom: 15px;
+    .time-card {
+        padding: 30px 25px;
     }
 
-    .visitInfo .card-body .map-button {
-        padding: 12px 24px;
-        font-size: 1rem;
-        width: 100%;
-        max-width: 300px;
+    .expect-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .address-info {
+        flex-direction: column;
+    }
+
+    .address-card,
+    .contact-card {
+        min-width: auto;
+    }
+
+    .map-container iframe {
+        height: 280px;
     }
 }
 
 @media (max-width: 480px) {
-    .VisitInfo {
-        padding: 5px;
+    .visit-header {
+        padding: 30px 15px;
     }
 
-    .VisitInfo .card {
-        margin: 10px 0;
-        border-radius: 8px;
+    .visit-header h1 {
+        font-size: 1.8rem;
     }
 
-    .VisitInfo .card-body {
+    .section-content {
+        padding: 30px 15px;
+    }
+
+    .time-card {
+        padding: 25px 20px;
+    }
+
+    .time-card .time {
+        font-size: 1.5rem;
+    }
+
+    .expect-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .expect-item {
         padding: 20px 15px;
     }
 
-    .visitInfo .card-body iframe {
-        min-height: 200px;
-        border-radius: 12px;
+    .address-card,
+    .contact-card {
+        padding: 25px 20px;
     }
 
-    .visitInfo .card-body .map-button {
-        padding: 14px 20px;
-        font-size: 0.95rem;
-        width: 100%;
+    .map-container iframe {
+        height: 250px;
+    }
+
+    .cta-btn {
+        padding: 12px 28px;
+        font-size: 1rem;
     }
 }

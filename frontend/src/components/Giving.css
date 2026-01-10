@@ -1,0 +1,503 @@
+/* Giving Page Styles */
+.giving-page {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #092352 0%, #0a2a5c 100%);
+}
+
+/* Header Section */
+.giving-header {
+    background: linear-gradient(135deg, #092352 0%, #0d3366 100%);
+    padding: 60px 40px;
+    text-align: center;
+    color: white;
+}
+
+.giving-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 20px 0;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #C25051;
+}
+
+.giving-header p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* Section Content Container */
+.giving-page .section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+/* Section Headers */
+.giving-page section h2 {
+    color: #C25051;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    text-align: center;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+/* Scripture Section */
+.scripture-section {
+    background: linear-gradient(135deg, rgba(194, 80, 81, 0.15) 0%, rgba(168, 71, 71, 0.15) 100%);
+}
+
+.scripture-section blockquote {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0;
+}
+
+.scripture-section blockquote p {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    color: white;
+    line-height: 1.8;
+    margin: 0 0 20px 0;
+}
+
+.scripture-section blockquote cite {
+    color: #C25051;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Online Giving Section */
+.online-giving {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.giving-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Giving Type */
+.giving-type {
+    margin-bottom: 30px;
+}
+
+.giving-type label {
+    display: block;
+    color: #092352;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.type-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.type-btn {
+    padding: 12px 20px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.type-btn:hover {
+    border-color: #C25051;
+    color: #C25051;
+}
+
+.type-btn.active {
+    background: #C25051;
+    border-color: #C25051;
+    color: white;
+}
+
+/* Amount Selection */
+.amount-selection {
+    margin-bottom: 30px;
+}
+
+.amount-selection > label {
+    display: block;
+    color: #092352;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.preset-amounts {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.amount-btn {
+    padding: 14px 24px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 80px;
+}
+
+.amount-btn:hover {
+    border-color: #C25051;
+    color: #C25051;
+}
+
+.amount-btn.active {
+    background: #C25051;
+    border-color: #C25051;
+    color: white;
+}
+
+.custom-amount label {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.custom-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 16px;
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.custom-amount input {
+    width: 100%;
+    padding: 14px 16px 14px 36px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.custom-amount input:focus {
+    outline: none;
+    border-color: #C25051;
+    box-shadow: 0 0 0 3px rgba(194, 80, 81, 0.1);
+}
+
+/* Give Button */
+.give-btn {
+    width: 100%;
+    padding: 18px 32px;
+    background: linear-gradient(135deg, #C25051 0%, #A84747 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.give-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #A84747 0%, #8a3939 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(194, 80, 81, 0.4);
+}
+
+.give-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.secure-notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.secure-notice svg {
+    color: #4CAF50;
+}
+
+/* Other Ways to Give */
+.other-ways {
+    background: linear-gradient(135deg, rgba(194, 80, 81, 0.1) 0%, rgba(168, 71, 71, 0.1) 100%);
+}
+
+.ways-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.way-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 35px 30px;
+    text-align: center;
+    border: 1px solid rgba(194, 80, 81, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.way-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(194, 80, 81, 0.2);
+}
+
+.way-icon {
+    color: #C25051;
+    margin-bottom: 20px;
+}
+
+.way-card h3 {
+    color: white;
+    font-size: 1.4rem;
+    margin: 0 0 15px 0;
+}
+
+.way-card p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Why We Give Section */
+.why-give {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.why-item {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.why-item h4 {
+    color: #C25051;
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
+}
+
+.why-item p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* How We Use Your Gifts */
+.how-we-use {
+    background: linear-gradient(135deg, rgba(9, 35, 82, 0.5) 0%, rgba(194, 80, 81, 0.1) 100%);
+}
+
+.use-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.use-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 30px 25px;
+    text-align: center;
+    border: 1px solid rgba(194, 80, 81, 0.2);
+}
+
+.use-percentage {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #C25051;
+    margin-bottom: 15px;
+}
+
+.use-item h4 {
+    color: white;
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+}
+
+.use-item p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Questions Section */
+.giving-questions {
+    background: linear-gradient(135deg, #C25051 0%, #A84747 100%);
+    text-align: center;
+}
+
+.giving-questions h2 {
+    color: white !important;
+    margin-bottom: 15px;
+}
+
+.giving-questions p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background-color: white;
+    color: #C25051;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+    background-color: #092352;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .giving-header {
+        padding: 40px 20px;
+    }
+
+    .giving-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .giving-page .section-content {
+        padding: 40px 20px;
+    }
+
+    .giving-form-container {
+        padding: 30px 25px;
+    }
+
+    .type-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .preset-amounts {
+        flex-direction: column;
+    }
+
+    .amount-btn {
+        width: 100%;
+    }
+
+    .ways-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .way-card {
+        padding: 30px 25px;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .use-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .use-item {
+        padding: 25px 20px;
+    }
+
+    .use-percentage {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .giving-header {
+        padding: 30px 15px;
+    }
+
+    .giving-page .section-content {
+        padding: 30px 15px;
+    }
+
+    .giving-form-container {
+        padding: 25px 20px;
+    }
+
+    .scripture-section blockquote p {
+        font-size: 1.1rem;
+    }
+
+    .give-btn {
+        padding: 16px 24px;
+        font-size: 1.1rem;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .use-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-btn {
+        padding: 12px 28px;
+        font-size: 1rem;
+    }
+}

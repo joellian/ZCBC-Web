@@ -7,6 +7,7 @@ import AboutUs from './components/AboutUs';
 import VisitUs from './components/VisitUs'
 import ContactUs from './components/ContactUs'
 import Giving from './components/Giving'
+import Sermons from './components/Sermons'
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
                   <Route path="/visit-us" element={<VisitUs />} />
                   <Route path="/contact-us" element={<ContactUs />} />
                   <Route path="/giving" element={<Giving />} />
+                  <Route path="/sermons" element={<Sermons />} />
               </Routes>
           </div>
       </Router>
