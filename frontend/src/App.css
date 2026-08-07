@@ -1,4 +1,60 @@
-/*Global Styles*/
+/* =========================================================================
+   Design tokens
+   Every colour, radius and section rhythm in the app resolves to one of
+   these. Change a brand colour here and it changes everywhere — never
+   hardcode a hex value in a component stylesheet.
+   ========================================================================= */
+:root {
+  /* Brand */
+  --color-primary: #c25051;
+  --color-primary-dark: #a84747;
+  --color-primary-darker: #8a3939;
+  --color-navy: #092352;
+
+  /* RGB triplets, for composing translucent variants:
+     rgba(var(--rgb-primary), 0.3) */
+  --rgb-primary: 194, 80, 81;
+  --rgb-navy: 9, 35, 82;
+
+  /* Surfaces */
+  --color-surface: #ffffff;
+  --color-surface-subtle: #fafafa;
+  --color-surface-muted: #f8f9fa;
+  --color-surface-tint: #fdf5f5;
+
+  /* Text */
+  --color-text: #2c3e50;
+  --color-text-muted: #6c757d;
+  --color-placeholder: #aaaaaa;
+
+  /* Borders */
+  --color-border: #e9ecef;
+  --color-border-strong: #e0e0e0;
+  --color-divider: #f0f0f0;
+
+  /* Feedback */
+  --color-error: #c0392b;
+  --color-error-text: #721c24;
+  --color-error-bg: #f8d7da;
+  --color-error-border: #f5c6cb;
+  --color-success-text: #155724;
+  --color-success-bg: #d4edda;
+  --color-success-border: #c3e6cb;
+  --color-accent-green: #4caf50;
+
+  /* Layout */
+  --content-max-width: 1200px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* Touch target minimum (WCAG 2.5.5) */
+  --touch-target: 44px;
+}
+
+/* =========================================================================
+   Reset & element defaults
+   ========================================================================= */
 * {
   margin: 0;
   padding: 0;
@@ -9,20 +65,25 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
 }
 
-/* Root Styles */
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
 #root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  color: black;
-  background-color: white;
+  color: var(--color-text);
+  background-color: var(--color-surface);
   width: 100%;
   min-height: 100vh;
 }
@@ -33,27 +94,49 @@ html, body {
   display: flex;
   flex-direction: column;
 }
-/* Images - Responsive by default */
+
+.main-content {
+  flex: 1;
+}
+
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Buttons - Touch-friendly defaults */
 button {
-  min-height: 44px;
-  min-width: 44px;
+  min-height: var(--touch-target);
+  min-width: var(--touch-target);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
-/* Links - Accessible touch targets */
 a {
-  min-height: 44px;
+  min-height: var(--touch-target);
   display: inline-flex;
   align-items: center;
 }
-/* Responsive Typography */
+
+button,
+a,
+input[type='submit'] {
+  touch-action: manipulation;
+}
+
+input,
+textarea,
+select {
+  font-size: 16px; /* below 16px, iOS Safari zooms on focus */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* =========================================================================
+   Responsive typography
+   ========================================================================= */
 h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.2;
@@ -79,15 +162,94 @@ p {
   line-height: 1.6;
 }
 
-/* Responsive Utilities */
+/* =========================================================================
+   Shared app-level states
+   These are rendered by App.jsx (Suspense fallback) and by pages *outside*
+   their own page wrapper, so they must live here rather than in a page
+   stylesheet — otherwise they are unstyled until that page's chunk loads.
+   ========================================================================= */
+.loading,
+.error {
+  text-align: center;
+  padding: 60px 40px;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  color: var(--color-error);
+}
+
+/* =========================================================================
+   Utilities
+   ========================================================================= */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* Global Responsive Breakpoints */
+/* Visible only to screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================================
+   Accessibility & motion
+   ========================================================================= */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Touch devices: drop hover transforms, add press feedback */
+@media (hover: none) and (pointer: coarse) {
+  a:hover,
+  button:hover {
+    transform: none;
+  }
+
+  a:active,
+  button:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
+/* =========================================================================
+   Breakpoints
+   ========================================================================= */
 @media (max-width: 1024px) {
   html {
     font-size: 15px;
@@ -107,7 +269,6 @@ p {
     padding: 0 10px;
   }
 
-  /* Increase touch targets on mobile */
   button {
     min-height: 48px;
     min-width: 48px;
@@ -123,62 +284,3 @@ p {
     padding: 0 5px;
   }
 }
-
-/* Prevent text selection on buttons for better mobile UX */
-button, .button {
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
-
-/* Smooth scrolling for anchor links */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-/* Accessibility - Focus styles */
-*:focus-visible {
-  outline: 2px solid #C25051;
-  outline-offset: 2px;
-}
-
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-  /* Remove hover effects on touch devices */
-  a:hover, button:hover {
-    transform: none;
-  }
-
-  /* Add active state for better touch feedback */
-  a:active, button:active {
-    opacity: 0.7;
-    transform: scale(0.98);
-  }
-}
-
-/* Prevent double-tap zoom on buttons and links */
-button, a, input[type="submit"] {
-  touch-action: manipulation;
-}
-
-/* Improve form input experience on mobile */
-input, textarea, select {
-  font-size: 16px; /* Prevents zoom on iOS */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-/* Better scrolling on iOS */
-body {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Prevent text size adjustment on orientation change */
-html {
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-

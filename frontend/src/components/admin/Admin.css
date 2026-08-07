@@ -1,0 +1,324 @@
+/* Admin screens. Scoped under .admin-* names and built entirely from the
+   tokens in App.css, so the admin inherits the site's palette. */
+
+.admin-shell {
+  min-height: 100vh;
+  background: var(--color-surface-muted);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Header ---- */
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 24px;
+  background: var(--color-navy);
+  color: var(--color-surface);
+}
+
+.admin-header-left,
+.admin-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-nav {
+  display: flex;
+  gap: 4px;
+}
+
+.admin-nav a {
+  color: var(--color-surface);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.admin-nav a:hover {
+  opacity: 1;
+  background: rgba(var(--rgb-primary), 0.25);
+}
+
+.admin-nav a.active {
+  opacity: 1;
+  background: var(--color-primary);
+}
+
+.admin-main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.admin-page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.admin-page-head h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-navy);
+}
+
+/* ---- Surfaces ---- */
+.admin-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(var(--rgb-navy), 0.05);
+  padding: 24px;
+}
+
+.admin-empty {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-muted {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---- Buttons ---- */
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 40px;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.admin-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-btn-primary {
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.admin-btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+}
+
+.admin-btn-ghost {
+  background: transparent;
+  border-color: currentColor;
+  color: inherit;
+}
+
+.admin-btn-ghost:hover:not(:disabled) {
+  background: rgba(var(--rgb-navy), 0.08);
+}
+
+.admin-btn-danger {
+  background: transparent;
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.admin-btn-danger:hover:not(:disabled) {
+  background: var(--color-error);
+  color: var(--color-surface);
+}
+
+/* ---- Table ---- */
+.admin-table-wrap {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
+}
+
+.admin-table th {
+  background: var(--color-surface-subtle);
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-actions-col {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.admin-actions-col .admin-btn + .admin-btn {
+  margin-left: 8px;
+}
+
+/* ---- Forms ---- */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-field label {
+  font-weight: 600;
+  color: var(--color-navy);
+  font-size: 0.95rem;
+}
+
+.admin-field input,
+.admin-field textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  width: 100%;
+}
+
+.admin-field input:focus,
+.admin-field textarea:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+  border-color: var(--color-primary);
+}
+
+.admin-field textarea {
+  resize: vertical;
+}
+
+.admin-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-form-note {
+  border-top: 1px solid var(--color-border);
+  padding-top: 16px;
+  margin: 0;
+}
+
+/* ---- Alerts ---- */
+.admin-alert {
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.admin-alert-error {
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  color: var(--color-error-text);
+}
+
+/* ---- Login ---- */
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--color-surface-muted);
+}
+
+.admin-login-form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-login-form h1 {
+  font-size: 1.6rem;
+  color: var(--color-navy);
+}
+
+/* ---- Delete confirmation ---- */
+.admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(var(--rgb-navy), 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1000;
+}
+
+.admin-modal {
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-modal h2 {
+  font-size: 1.3rem;
+  color: var(--color-navy);
+}
+
+.admin-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-main {
+    padding: 20px 12px 48px;
+  }
+}

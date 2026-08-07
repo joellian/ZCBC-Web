@@ -1,90 +1,763 @@
-/* Home Page */
+/* Home Page Styles */
 .home-page {
-    text-align: center;
-    background-color: #092352;
-    min-height: 100vh;
-    padding: 20px;
+  background-color: var(--color-surface);
+  min-height: 100vh;
+  color: var(--color-text);
 }
 
-.home-page .header {
-    color: #C25051;
-    padding: 40px 20px;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+/* ==================== HERO SECTION ==================== */
+.home-page .hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-surface) 0%,
+    var(--color-surface-tint) 50%,
+    var(--color-surface) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  overflow: hidden;
 }
 
-.home-page .header h2 {
-    margin: 0;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.home-page .body {
-    color: #C25051;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+.home-page .hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/kan-biakinn.jpg') no-repeat center center;
+  background-size: cover;
+  opacity: 1;
+  pointer-events: none;
 }
 
-.home-page .events {
-    color: #C25051;
-    padding: 30px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+.home-page .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--rgb-navy), 0.55) 0%,
+    rgba(var(--rgb-navy), 0.68) 100%
+  );
 }
 
-/* Responsive breakpoints for HomePage */
+.home-page .hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 40px 20px;
+  max-width: 900px;
+}
+
+.home-page .hero-title {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  color: var(--color-surface);
+  margin: 0 0 20px 0;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+  animation: fadeInUp 1s ease-out;
+}
+
+.home-page .hero-tagline {
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  color: var(--color-primary);
+  margin: 0 0 40px 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-page .hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.home-page .hero-btn {
+  display: inline-block;
+  padding: 16px 36px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 180px;
+  text-align: center;
+}
+
+.home-page .hero-btn.primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  color: var(--color-surface);
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(var(--rgb-primary), 0.3);
+}
+
+.home-page .hero-btn.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(var(--rgb-primary), 0.5);
+}
+
+.home-page .hero-btn.secondary {
+  background: transparent;
+  color: var(--color-surface);
+  border: 2px solid var(--color-surface);
+}
+
+.home-page .hero-btn.secondary:hover {
+  background: var(--color-surface);
+  color: var(--color-navy);
+  transform: translateY(-3px);
+}
+
+.home-page .hero-scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(var(--rgb-navy), 0.5);
+  font-size: 0.85rem;
+  animation: bounce 2s infinite;
+}
+
+.home-page .scroll-arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid rgba(var(--rgb-navy), 0.5);
+  border-bottom: 2px solid rgba(var(--rgb-navy), 0.5);
+  transform: rotate(45deg);
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* ==================== SECTION COMMON STYLES ==================== */
+.home-page .section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.home-page .section-content h2 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--color-primary);
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.home-page .section-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--color-text-muted);
+  margin: 0 0 30px 0;
+  font-weight: 400;
+}
+
+.home-page .section-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  color: var(--color-surface);
+  transition: all 0.3s ease;
+  margin-top: 30px;
+  box-shadow: 0 4px 15px rgba(var(--rgb-primary), 0.25);
+}
+
+.home-page .section-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(var(--rgb-primary), 0.4);
+}
+
+.home-page .section-btn.secondary {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: none;
+}
+
+.home-page .section-btn.secondary:hover {
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+/* ==================== WELCOME SECTION ==================== */
+.home-page .welcome-section {
+  background: var(--color-surface);
+}
+
+.home-page .welcome-text {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--color-text);
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ==================== SERVICE & LOCATION SECTION ==================== */
+.home-page .service-location-section {
+  background: var(--color-surface-subtle);
+}
+
+.home-page .service-location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.home-page .service-times-card,
+.home-page .location-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 40px 30px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(var(--rgb-navy), 0.04);
+  transition: all 0.3s ease;
+}
+
+.home-page .service-times-card:hover,
+.home-page .location-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(var(--rgb-primary), 0.15);
+  border-color: rgba(var(--rgb-primary), 0.3);
+}
+
+.home-page .card-icon {
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+
+.home-page .service-times-card h3,
+.home-page .location-card h3 {
+  font-size: 1.4rem;
+  color: var(--color-navy);
+  margin: 0 0 20px 0;
+  font-weight: 600;
+}
+
+.home-page .service-time-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.home-page .service-time-item:last-child {
+  border-bottom: none;
+}
+
+.home-page .service-time-item strong {
+  color: var(--color-navy);
+}
+
+.home-page .address {
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.home-page .directions-link {
+  display: inline-block;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.home-page .directions-link:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.home-page .map-preview {
+  margin: 30px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(var(--rgb-navy), 0.15);
+}
+
+/* ==================== LATEST SERMON SECTION ==================== */
+.home-page .latest-sermon-section {
+  background: var(--color-surface);
+}
+
+.home-page .sermon-loading {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  padding: 40px;
+}
+
+.home-page .sermon-card {
+  display: flex;
+  flex-direction: row;
+  background: var(--color-surface);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 12px rgba(var(--rgb-navy), 0.06);
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.home-page .sermon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(var(--rgb-primary), 0.15);
+  border-color: rgba(var(--rgb-primary), 0.3);
+}
+
+.home-page .sermon-thumbnail {
+  flex: 0 0 300px;
+  min-height: 220px;
+  background: var(--color-divider);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-page .sermon-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-page .sermon-thumbnail-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--color-primary);
+}
+
+.home-page .sermon-info {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home-page .sermon-info h3 {
+  font-size: 1.5rem;
+  color: var(--color-navy);
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.home-page .sermon-speaker {
+  color: var(--color-primary);
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
+
+.home-page .sermon-date {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 15px 0;
+}
+
+.home-page .sermon-description {
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.home-page .sermon-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* ==================== EVENTS SECTION ==================== */
+.home-page .events-section {
+  background: var(--color-surface-subtle);
+}
+
+.home-page .events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.home-page .event-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(var(--rgb-navy), 0.04);
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.home-page .event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(var(--rgb-primary), 0.15);
+  border-color: rgba(var(--rgb-primary), 0.3);
+}
+
+.home-page .event-date-badge {
+  margin-bottom: 15px;
+}
+
+.home-page .event-day {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  color: var(--color-surface);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.home-page .event-details h3 {
+  font-size: 1.25rem;
+  color: var(--color-navy);
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.home-page .event-time {
+  color: var(--color-primary);
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+}
+
+.home-page .event-description {
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ==================== CONNECT SECTION ==================== */
+.home-page .connect-section {
+  background: var(--color-surface);
+}
+
+.home-page .connect-text {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  color: var(--color-text);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+}
+
+.home-page .connect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.home-page .connect-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 35px 25px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(var(--rgb-navy), 0.04);
+  transition: all 0.3s ease;
+}
+
+.home-page .connect-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(var(--rgb-primary), 0.15);
+  border-color: rgba(var(--rgb-primary), 0.3);
+}
+
+.home-page .connect-icon {
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+
+.home-page .connect-card h3 {
+  font-size: 1.3rem;
+  color: var(--color-navy);
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.home-page .connect-card p {
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ==================== GIVE SECTION ==================== */
+.home-page .give-section {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.home-page .give-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/zcbc-icon.png') no-repeat center center;
+  background-size: 300px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.home-page .give-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.home-page .give-section h2 {
+  color: var(--color-surface);
+}
+
+.home-page .give-text {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.home-page .give-btn {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.home-page .give-btn:hover {
+  background: var(--color-navy);
+  color: var(--color-surface);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== RESPONSIVE STYLES ==================== */
 @media (max-width: 1024px) {
-    .home-page {
-        padding: 15px;
-    }
-
-    .home-page .header {
-        padding: 30px 15px;
-    }
-
-    .home-page .events {
-        padding: 25px 15px;
-    }
+  .home-page .section-content {
+    padding: 60px 30px;
+  }
 }
 
 @media (max-width: 768px) {
-    .home-page {
-        padding: 10px;
-    }
+  .home-page .hero-section {
+    min-height: 90vh;
+  }
 
-    .home-page .header {
-        padding: 25px 10px;
-        font-size: clamp(1.3rem, 5vw, 2rem);
-    }
+  .home-page .hero-content {
+    padding: 30px 15px;
+  }
 
-    .home-page .body {
-        padding: 15px 10px;
-    }
+  .home-page .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .home-page .events {
-        padding: 20px 10px;
-    }
+  .home-page .hero-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .home-page .hero-scroll-indicator {
+    display: none;
+  }
+
+  .home-page .section-content {
+    padding: 50px 20px;
+  }
+
+  .home-page .sermon-card {
+    flex-direction: column;
+  }
+
+  .home-page .sermon-thumbnail {
+    flex: none;
+    min-height: 200px;
+  }
+
+  .home-page .sermon-info {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .home-page .sermon-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-page .service-location-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page .connect-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
-    .home-page {
-        padding: 5px;
-    }
+  .home-page .hero-title {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+  }
 
-    .home-page .header {
-        padding: 20px 5px;
-        font-size: clamp(1.2rem, 6vw, 1.8rem);
-    }
+  .home-page .hero-tagline {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+  }
 
-    .home-page .header h2 {
-        letter-spacing: 0.3px;
-    }
+  .home-page .section-content {
+    padding: 40px 15px;
+  }
 
-    .home-page .body {
-        padding: 10px 5px;
-    }
+  .home-page .section-content h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
 
-    .home-page .events {
-        padding: 15px 5px;
-    }
+  .home-page .service-times-card,
+  .home-page .location-card,
+  .home-page .event-card,
+  .home-page .connect-card {
+    padding: 25px 20px;
+  }
+
+  .home-page .sermon-info {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-page .hero-content {
+    padding: 20px 10px;
+  }
+
+  .home-page .section-content {
+    padding: 35px 12px;
+  }
+
+  .home-page .hero-btn {
+    padding: 14px 28px;
+    font-size: 0.95rem;
+  }
+
+  .home-page .section-btn {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .home-page .hero-section {
+    animation: none;
+  }
+
+  .home-page .hero-title,
+  .home-page .hero-tagline,
+  .home-page .hero-buttons {
+    animation: none;
+  }
+
+  .home-page .hero-scroll-indicator {
+    animation: none;
+  }
+
+  .home-page .hero-btn,
+  .home-page .section-btn,
+  .home-page .service-times-card,
+  .home-page .location-card,
+  .home-page .event-card,
+  .home-page .connect-card,
+  .home-page .sermon-card {
+    transition: none;
+  }
+}
+
+/* Focus states for accessibility */
+.home-page .hero-btn:focus-visible,
+.home-page .section-btn:focus-visible,
+.home-page .directions-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }

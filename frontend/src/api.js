@@ -1,117 +1,106 @@
 import axios from 'axios';
 
-// Base URL for your Strapi API
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:1337/api';
 
-// Create axios instance
+/* -------------------------------------------------------------------------
+   Token storage
+   Kept in localStorage so an admin session survives a refresh. Exported so
+   the auth context is the only thing that writes it.
+   ------------------------------------------------------------------------- */
+const TOKEN_KEY = 'zcbc.jwt';
+
+export const tokenStorage = {
+  get: () => localStorage.getItem(TOKEN_KEY),
+  set: (token) => localStorage.setItem(TOKEN_KEY, token),
+  clear: () => localStorage.removeItem(TOKEN_KEY),
+};
+
+/** Fired when the API rejects our token, so AuthProvider can drop the session. */
+export const UNAUTHORIZED_EVENT = 'zcbc:unauthorized';
+
 const api = axios.create({
   baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  headers: { 'Content-Type': 'application/json' },
 });
 
-// API functions
-export const aboutUsApi = {
-  // Get About Us content
-  getAboutUs: async () => {
-    try {
-      const response = await api.get('/aboutuses');
-      console.log('About Us API response:', response.data); // Debug log
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching about us:', error);
-      throw error;
+api.interceptors.request.use((config) => {
+  const token = tokenStorage.get();
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
+/**
+ * Strapi errors arrive as { error: { status, name, message, details } }.
+ * Flatten them to a normal Error so callers never have to dig through
+ * error.response.data.error.message.
+ */
+function normalizeError(error) {
+  const strapiError = error.response?.data?.error;
+  const normalized = new Error(
+    strapiError?.message || error.message || 'Something went wrong'
+  );
+  normalized.status = error.response?.status;
+  normalized.details = strapiError?.details;
+  return normalized;
+}
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      tokenStorage.clear();
+      window.dispatchEvent(new Event(UNAUTHORIZED_EVENT));
     }
+    return Promise.reject(normalizeError(error));
   }
-};
+);
 
-export const leadersApi = {
-  // Get all leaders
-  getLeaders: async () => {
-    try {
-      const response = await api.get('/leaders?populate=*');
-      console.log('Leaders API with populate:', response.data); // Debug log
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching leaders:', error);
-      throw error;
-    }
-  },
+/* -------------------------------------------------------------------------
+   Resource factories
 
-  // Get leaders by department
-  getLeadersByDepartment: async (department) => {
-    try {
-      const response = await api.get(`/leaders?filters[department][$eq]=${department}`);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching leaders by department:', error);
-      throw error;
-    }
-  }
-};
+   These translate Strapi's response envelope ({ data, meta }) into plain
+   values, so no component ever has to know about it. Note that Strapi 5
+   addresses single entries by `documentId`, not the numeric `id`.
+   ------------------------------------------------------------------------- */
 
-export const sermonsApi = {
-  // Get all sermons
-  getSermons: async () => {
-    try {
-      const response = await api.get('/sermons?populate=*');
-      console.log('Sermons API response:', response.data);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching sermons:', error);
-      throw error;
-    }
-  },
+/** A Strapi collection type: full CRUD. */
+const collection = (name) => ({
+  list: (params) =>
+    api.get(`/${name}`, { params }).then((res) => ({
+      items: res.data?.data ?? [],
+      meta: res.data?.meta ?? {},
+    })),
 
-  // Get sermon by ID
-  getSermonById: async (id) => {
-    try {
-      const response = await api.get(`/sermons/${id}?populate=*`);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching sermon:', error);
-      throw error;
-    }
-  },
+  get: (documentId, params) =>
+    api.get(`/${name}/${documentId}`, { params }).then((res) => res.data?.data ?? null),
 
-  // Get sermons by series
-  getSermonsBySeries: async (series) => {
-    try {
-      const response = await api.get(`/sermons?filters[series][$eq]=${series}&populate=*`);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching sermons by series:', error);
-      throw error;
-    }
-  }
-};
+  create: (data) => api.post(`/${name}`, { data }).then((res) => res.data?.data),
 
-export const givingApi = {
-  // Get giving page content
-  getGivingContent: async () => {
-    try {
-      const response = await api.get('/giving?populate=*');
-      console.log('Giving API response:', response.data);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching giving content:', error);
-      throw error;
-    }
-  }
-};
+  update: (documentId, data) =>
+    api.put(`/${name}/${documentId}`, { data }).then((res) => res.data?.data),
 
-export const contactApi = {
-  // Submit contact form
-  submitContact: async (formData) => {
-    try {
-      const response = await api.post('/contacts', { data: formData });
-      return response.data;
-    } catch (error) {
-      console.error('Error submitting contact form:', error);
-      throw error;
-    }
-  }
+  remove: (documentId) => api.delete(`/${name}/${documentId}`).then(() => documentId),
+});
+
+/** A Strapi single type: one entry, no id. */
+const single = (name) => ({
+  get: (params) => api.get(`/${name}`, { params }).then((res) => res.data?.data ?? null),
+  update: (data) => api.put(`/${name}`, { data }).then((res) => res.data?.data),
+});
+
+export const sermonsApi = collection('sermons');
+export const leadersApi = collection('leaders');
+export const contactsApi = collection('contacts');
+export const aboutUsApi = single('aboutus');
+
+/* -------------------------------------------------------------------------
+   Auth (Strapi users-permissions)
+   These endpoints return { jwt, user } at the top level — no data envelope.
+   ------------------------------------------------------------------------- */
+export const authApi = {
+  login: (identifier, password) =>
+    api.post('/auth/local', { identifier, password }).then((res) => res.data),
+  me: () => api.get('/users/me').then((res) => res.data),
 };
 
 export default api;

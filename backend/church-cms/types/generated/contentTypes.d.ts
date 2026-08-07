@@ -410,10 +410,10 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAboutusAboutus extends Struct.CollectionTypeSchema {
+export interface ApiAboutusAboutus extends Struct.SingleTypeSchema {
   collectionName: 'aboutuses';
   info: {
-    displayName: 'aboutus';
+    displayName: 'About Us';
     pluralName: 'aboutuses';
     singularName: 'aboutus';
   };
@@ -508,38 +508,6 @@ export interface ApiLeaderLeader extends Struct.CollectionTypeSchema {
     photo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiPagePage extends Struct.CollectionTypeSchema {
-  collectionName: 'pages';
-  info: {
-    displayName: 'page';
-    pluralName: 'pages';
-    singularName: 'page';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    content: Schema.Attribute.RichText;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    featured_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'> &
-      Schema.Attribute.Private;
-    meta_description: Schema.Attribute.Text;
-    published: Schema.Attribute.Boolean;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1095,7 +1063,6 @@ declare module '@strapi/strapi' {
       'api::aboutus.aboutus': ApiAboutusAboutus;
       'api::contact.contact': ApiContactContact;
       'api::leader.leader': ApiLeaderLeader;
-      'api::page.page': ApiPagePage;
       'api::sermon.sermon': ApiSermonSermon;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

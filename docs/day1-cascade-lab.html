@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cascade Lab — the .sermon-card collision</title>
+    <style>
+      :root {
+        --primary: #c25051;
+        --navy: #092352;
+        --border: #e9ecef;
+        --muted: #6c757d;
+        --bg: #f8f9fa;
+        --surface: #fff;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--navy);
+        padding: 32px 20px 64px;
+      }
+      .wrap { max-width: 860px; margin: 0 auto; }
+      h1 { font-size: 1.6rem; margin-bottom: 6px; }
+      h2 { font-size: 1.1rem; margin: 32px 0 10px; color: var(--primary); }
+      p.lede { color: var(--muted); margin-bottom: 8px; }
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 14px;
+      }
+      .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+      button {
+        font: inherit;
+        font-weight: 600;
+        padding: 9px 16px;
+        border-radius: 6px;
+        border: 1px solid var(--primary);
+        background: transparent;
+        color: var(--primary);
+        cursor: pointer;
+      }
+      button[aria-pressed="true"] { background: var(--primary); color: #fff; }
+      label.toggle {
+        display: inline-flex; align-items: center; gap: 8px;
+        margin-left: auto; font-size: 0.92rem; color: var(--muted);
+      }
+      .stage {
+        margin-top: 18px; padding: 18px;
+        background: repeating-linear-gradient(45deg,#fafafa,#fafafa 10px,#f2f2f2 10px,#f2f2f2 20px);
+        border-radius: 8px;
+      }
+      table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.9rem; }
+      th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+      th { color: var(--muted); font-weight: 600; }
+      td.val { font-family: ui-monospace, Menlo, monospace; }
+      .winner { color: var(--primary); font-weight: 700; }
+      code {
+        font-family: ui-monospace, Menlo, monospace;
+        background: #f1f1f4; padding: 1px 5px; border-radius: 4px; font-size: 0.9em;
+      }
+      pre {
+        background: var(--navy); color: #e8ecf5; padding: 14px 16px;
+        border-radius: 8px; overflow-x: auto; font-size: 0.84rem; margin-top: 10px;
+      }
+      pre .sel { color: #ffb3b4; }
+      ol { margin: 10px 0 0 20px; }
+      ol li { margin-bottom: 6px; }
+      .note {
+        border-left: 3px solid var(--primary);
+        padding: 10px 14px; margin-top: 16px; background: #fdf5f5;
+        border-radius: 0 6px 6px 0; font-size: 0.94rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Cascade Lab</h1>
+      <p class="lede">
+        The same markup. The same two stylesheets. Only the <em>order they load</em>
+        changes.
+      </p>
+
+      <h2>1. Load order decides the winner</h2>
+      <p>
+        Both stylesheets define <code>.sermon-card</code> at identical specificity
+        (0,1,0). Click the buttons to change which one loads first — exactly what
+        happens when a visitor lands on one lazy-loaded route before the other.
+      </p>
+
+      <div class="panel">
+        <div class="controls">
+          <button id="btn-home" aria-pressed="true">Visitor lands on Home first</button>
+          <button id="btn-sermons" aria-pressed="false">Visitor lands on Sermons first</button>
+          <label class="toggle">
+            <input type="checkbox" id="fix" />
+            Apply the scoping fix
+          </label>
+        </div>
+
+        <div class="stage">
+          <!-- This card is on the SERMONS page. It should always look like the
+               Sermons page's grid card. Watch whether it does. -->
+          <div class="sermons-page">
+            <div class="sermon-card">
+              <div class="sermon-thumbnail"></div>
+              <div class="sermon-info">
+                <h3 style="font-size:1.05rem">Walking in Faith</h3>
+                <p style="font-size:.88rem;color:#6c757d">Pastor · March 2, 2026</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr><th>Computed property</th><th>Value</th><th>Coming from</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>flex-direction</td><td class="val" id="v-dir">—</td><td id="s-dir">—</td></tr>
+            <tr><td>max-width</td><td class="val" id="v-max">—</td><td id="s-max">—</td></tr>
+            <tr><td>border-radius</td><td class="val" id="v-rad">—</td><td id="s-rad">—</td></tr>
+          </tbody>
+        </table>
+
+        <div class="note" id="verdict"></div>
+      </div>
+
+      <h2>2. The two rules, side by side</h2>
+      <pre id="css-view"></pre>
+
+      <h2>3. Do this in DevTools</h2>
+      <ol>
+        <li>Right-click the card above → <strong>Inspect</strong>.</li>
+        <li>
+          In the <strong>Styles</strong> panel, find every rule matching
+          <code>.sermon-card</code>. Rules that lost are shown with a
+          <s>strikethrough</s>.
+        </li>
+        <li>Flip the load order with the buttons and watch which rule gets crossed out.</li>
+        <li>
+          Now open the <strong>Computed</strong> tab, expand
+          <code>flex-direction</code>, and click the arrow next to the winning value —
+          DevTools jumps you to the exact rule that won.
+        </li>
+        <li>Tick "Apply the scoping fix" and repeat. The order should stop mattering.</li>
+      </ol>
+
+      <div class="note">
+        <strong>Question to sit with:</strong> when the fix is on, is it the higher
+        specificity that saves you, or the fact that the two selectors no longer match
+        the same element? Those are different mechanisms. Only one of them is reliable.
+      </div>
+    </div>
+
+    <script>
+      // Mirrors the two real rules from your repo (values simplified).
+      const HOME_CSS = {
+        label: 'HomePage.css',
+        plain: `.sermon-card {
+  display: flex;
+  flex-direction: row;
+  max-width: 900px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.sermon-thumbnail { width: 220px; min-height: 120px; background: #092352; flex-shrink: 0; }
+.sermon-info { padding: 18px; }`,
+        scoped: `.home-page .sermon-card {
+  display: flex;
+  flex-direction: row;
+  max-width: 900px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.home-page .sermon-thumbnail { width: 220px; min-height: 120px; background: #092352; flex-shrink: 0; }
+.home-page .sermon-info { padding: 18px; }`,
+      };
+
+      const SERMONS_CSS = {
+        label: 'Sermons.css',
+        plain: `.sermon-card {
+  display: block;
+  flex-direction: column;
+  max-width: 300px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+}
+.sermon-thumbnail { width: 100%; height: 90px; background: #c25051; }
+.sermon-info { padding: 14px; }`,
+        scoped: `.sermons-page .sermon-card {
+  display: block;
+  flex-direction: column;
+  max-width: 300px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+}
+.sermons-page .sermon-thumbnail { width: 100%; height: 90px; background: #c25051; }
+.sermons-page .sermon-info { padding: 14px; }`,
+      };
+
+      let homeFirst = true;
+      let scoped = false;
+
+      const $ = (id) => document.getElementById(id);
+
+      function render() {
+        document.querySelectorAll('style[data-lab]').forEach((n) => n.remove());
+
+        const order = homeFirst ? [HOME_CSS, SERMONS_CSS] : [SERMONS_CSS, HOME_CSS];
+        order.forEach((sheet) => {
+          const el = document.createElement('style');
+          el.dataset.lab = sheet.label;
+          el.textContent = scoped ? sheet.scoped : sheet.plain;
+          document.head.appendChild(el);
+        });
+
+        $('btn-home').setAttribute('aria-pressed', String(homeFirst));
+        $('btn-sermons').setAttribute('aria-pressed', String(!homeFirst));
+
+        $('css-view').innerHTML = order
+          .map(
+            (s) =>
+              `<span class="sel">/* ${s.label} — loaded ${
+                s === order[0] ? 'FIRST' : 'SECOND'
+              } */</span>\n${(scoped ? s.scoped : s.plain).replace(/</g, '&lt;')}`
+          )
+          .join('\n\n');
+
+        requestAnimationFrame(readout);
+      }
+
+      function readout() {
+        const card = document.querySelector('.sermon-card');
+        const cs = getComputedStyle(card);
+        const last = homeFirst ? SERMONS_CSS.label : HOME_CSS.label;
+
+        const dir = cs.flexDirection;
+        const max = cs.maxWidth;
+        const rad = cs.borderTopLeftRadius;
+
+        $('v-dir').textContent = dir;
+        $('v-max').textContent = max;
+        $('v-rad').textContent = rad;
+
+        // Which sheet do these values correspond to?
+        const from = max === '900px' ? HOME_CSS.label : SERMONS_CSS.label;
+        ['s-dir', 's-max', 's-rad'].forEach((id) => {
+          $(id).innerHTML = `<span class="winner">${from}</span>`;
+        });
+
+        $('verdict').innerHTML = scoped
+          ? `Scoping is <strong>on</strong>. The card sits inside <code>.sermons-page</code>, so
+             <code>${SERMONS_CSS.label}</code> wins no matter which sheet loaded first —
+             <code>${HOME_CSS.label}</code>'s rule doesn't match this element at all.
+             Flip the order: nothing changes. <strong>That</strong> is the property you want.`
+          : `Scoping is <strong>off</strong>. Both rules match, both have specificity (0,1,0),
+             so the <em>later</em> one wins — currently <code>${last}</code>.
+             This card is on the Sermons page, so it should look like a
+             <code>${SERMONS_CSS.label}</code> card. Right now it's rendering as
+             <code>${from}</code>. ${
+               from === HOME_CSS.label
+                 ? '<strong>That is the bug.</strong>'
+                 : 'Looks fine — but only by luck of navigation order.'
+             }`;
+      }
+
+      $('btn-home').onclick = () => { homeFirst = true; render(); };
+      $('btn-sermons').onclick = () => { homeFirst = false; render(); };
+      $('fix').onchange = (e) => { scoped = e.target.checked; render(); };
+
+      render();
+    </script>
+  </body>
+</html>

@@ -1,503 +1,488 @@
 /* Giving Page Styles */
 .giving-page {
-    width: 100%;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #092352 0%, #0a2a5c 100%);
-}
-
-/* Header Section */
-.giving-header {
-    background: linear-gradient(135deg, #092352 0%, #0d3366 100%);
-    padding: 60px 40px;
-    text-align: center;
-    color: white;
-}
-
-.giving-header h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin: 0 0 20px 0;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #C25051;
-}
-
-.giving-header p {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    line-height: 1.6;
-    max-width: 700px;
-    margin: 0 auto;
-    opacity: 0.95;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 /* Section Content Container */
 .giving-page .section-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px;
 }
 
 /* Section Headers */
 .giving-page section h2 {
-    color: #C25051;
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    text-align: center;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
+  color: var(--color-primary);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  text-align: center;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
 }
 
-.section-subtitle {
-    text-align: center;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
-    margin-bottom: 40px;
+.giving-page .section-subtitle {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
 }
 
 /* Scripture Section */
-.scripture-section {
-    background: linear-gradient(135deg, rgba(194, 80, 81, 0.15) 0%, rgba(168, 71, 71, 0.15) 100%);
+.giving-page .scripture-section {
+  background: var(--color-surface-subtle);
 }
 
-.scripture-section blockquote {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0;
+.giving-page .scripture-section blockquote {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0;
 }
 
-.scripture-section blockquote p {
-    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-    font-style: italic;
-    color: white;
-    line-height: 1.8;
-    margin: 0 0 20px 0;
+.giving-page .scripture-section blockquote p {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-style: italic;
+  color: var(--color-navy);
+  line-height: 1.8;
+  margin: 0 0 20px 0;
 }
 
-.scripture-section blockquote cite {
-    color: #C25051;
-    font-size: 1.1rem;
-    font-weight: 600;
-    font-style: normal;
+.giving-page .scripture-section blockquote cite {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-style: normal;
 }
 
 /* Online Giving Section */
-.online-giving {
-    background: rgba(255, 255, 255, 0.03);
+.giving-page .online-giving {
+  background: var(--color-surface);
 }
 
-.giving-form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+.giving-page .giving-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 6px 24px rgba(var(--rgb-navy), 0.08);
+  border: 1px solid var(--color-border);
 }
 
 /* Giving Type */
-.giving-type {
-    margin-bottom: 30px;
+.giving-page .giving-type {
+  margin-bottom: 30px;
 }
 
-.giving-type label {
-    display: block;
-    color: #092352;
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 12px;
+.giving-page .giving-type label {
+  display: block;
+  color: var(--color-navy);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 12px;
 }
 
-.type-buttons {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+.giving-page .type-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
-.type-btn {
-    padding: 12px 20px;
-    border: 2px solid #e0e0e0;
-    background: white;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.giving-page .type-btn {
+  padding: 12px 20px;
+  border: 2px solid var(--color-border-strong);
+  background: var(--color-surface);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.type-btn:hover {
-    border-color: #C25051;
-    color: #C25051;
+.giving-page .type-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
-.type-btn.active {
-    background: #C25051;
-    border-color: #C25051;
-    color: white;
+.giving-page .type-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-surface);
 }
 
 /* Amount Selection */
-.amount-selection {
-    margin-bottom: 30px;
+.giving-page .amount-selection {
+  margin-bottom: 30px;
 }
 
-.amount-selection > label {
-    display: block;
-    color: #092352;
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 12px;
+.giving-page .amount-selection > label {
+  display: block;
+  color: var(--color-navy);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 12px;
 }
 
-.preset-amounts {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+.giving-page .preset-amounts {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
-.amount-btn {
-    padding: 14px 24px;
-    border: 2px solid #e0e0e0;
-    background: white;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-    min-width: 80px;
+.giving-page .amount-btn {
+  padding: 14px 24px;
+  border: 2px solid var(--color-border-strong);
+  background: var(--color-surface);
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 80px;
 }
 
-.amount-btn:hover {
-    border-color: #C25051;
-    color: #C25051;
+.giving-page .amount-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
-.amount-btn.active {
-    background: #C25051;
-    border-color: #C25051;
-    color: white;
+.giving-page .amount-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-surface);
 }
 
-.custom-amount label {
-    display: block;
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 8px;
+.giving-page .custom-amount label {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
 }
 
-.custom-input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
+.giving-page .custom-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.currency-symbol {
-    position: absolute;
-    left: 16px;
-    color: #666;
-    font-size: 1.1rem;
-    font-weight: 600;
+.giving-page .currency-symbol {
+  position: absolute;
+  left: 16px;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.custom-amount input {
-    width: 100%;
-    padding: 14px 16px 14px 36px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
+.giving-page .custom-amount input {
+  width: 100%;
+  padding: 14px 16px 14px 36px;
+  border: 2px solid var(--color-border-strong);
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  color: var(--color-text);
+  background: var(--color-surface);
 }
 
-.custom-amount input:focus {
-    outline: none;
-    border-color: #C25051;
-    box-shadow: 0 0 0 3px rgba(194, 80, 81, 0.1);
+.giving-page .custom-amount input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--rgb-primary), 0.1);
 }
 
 /* Give Button */
-.give-btn {
-    width: 100%;
-    padding: 18px 32px;
-    background: linear-gradient(135deg, #C25051 0%, #A84747 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 20px;
+.giving-page .give-btn {
+  width: 100%;
+  padding: 18px 32px;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  color: var(--color-surface);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
 
-.give-btn:hover:not(:disabled) {
-    background: linear-gradient(135deg, #A84747 0%, #8a3939 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(194, 80, 81, 0.4);
+.giving-page .give-btn:hover:not(:disabled) {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    var(--color-primary-darker) 100%
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(var(--rgb-primary), 0.3);
 }
 
-.give-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.giving-page .give-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.secure-notice {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: #666;
-    font-size: 0.9rem;
+.giving-page .secure-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
 }
 
-.secure-notice svg {
-    color: #4CAF50;
+.giving-page .secure-notice svg {
+  color: var(--color-accent-green);
 }
 
 /* Other Ways to Give */
-.other-ways {
-    background: linear-gradient(135deg, rgba(194, 80, 81, 0.1) 0%, rgba(168, 71, 71, 0.1) 100%);
+.giving-page .other-ways {
+  background: var(--color-surface-subtle);
 }
 
-.ways-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+.giving-page .ways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
 }
 
-.way-card {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 35px 30px;
-    text-align: center;
-    border: 1px solid rgba(194, 80, 81, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.giving-page .way-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 35px 30px;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(var(--rgb-navy), 0.04);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.way-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(194, 80, 81, 0.2);
+.giving-page .way-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(var(--rgb-primary), 0.15);
+  border-color: rgba(var(--rgb-primary), 0.3);
 }
 
-.way-icon {
-    color: #C25051;
-    margin-bottom: 20px;
+.giving-page .way-icon {
+  color: var(--color-primary);
+  margin-bottom: 20px;
 }
 
-.way-card h3 {
-    color: white;
-    font-size: 1.4rem;
-    margin: 0 0 15px 0;
+.giving-page .way-card h3 {
+  color: var(--color-navy);
+  font-size: 1.4rem;
+  margin: 0 0 15px 0;
 }
 
-.way-card p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin: 0;
+.giving-page .way-card p {
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* Why We Give Section */
-.why-give {
-    background: rgba(255, 255, 255, 0.03);
+.giving-page .why-give {
+  background: var(--color-surface);
 }
 
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+.giving-page .why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
 }
 
-.why-item {
-    text-align: center;
-    padding: 30px 20px;
+.giving-page .why-item {
+  text-align: center;
+  padding: 30px 20px;
 }
 
-.why-item h4 {
-    color: #C25051;
-    font-size: 1.3rem;
-    margin: 0 0 15px 0;
+.giving-page .why-item h4 {
+  color: var(--color-primary);
+  font-size: 1.3rem;
+  margin: 0 0 15px 0;
 }
 
-.why-item p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin: 0;
+.giving-page .why-item p {
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* How We Use Your Gifts */
-.how-we-use {
-    background: linear-gradient(135deg, rgba(9, 35, 82, 0.5) 0%, rgba(194, 80, 81, 0.1) 100%);
+.giving-page .how-we-use {
+  background: var(--color-surface-subtle);
 }
 
-.use-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
+.giving-page .use-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
 }
 
-.use-item {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 30px 25px;
-    text-align: center;
-    border: 1px solid rgba(194, 80, 81, 0.2);
+.giving-page .use-item {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 30px 25px;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(var(--rgb-navy), 0.04);
 }
 
-.use-percentage {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #C25051;
-    margin-bottom: 15px;
+.giving-page .use-percentage {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 15px;
 }
 
-.use-item h4 {
-    color: white;
-    font-size: 1.1rem;
-    margin: 0 0 10px 0;
+.giving-page .use-item h4 {
+  color: var(--color-navy);
+  font-size: 1.1rem;
+  margin: 0 0 10px 0;
 }
 
-.use-item p {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 0;
+.giving-page .use-item p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* Questions Section */
-.giving-questions {
-    background: linear-gradient(135deg, #C25051 0%, #A84747 100%);
-    text-align: center;
+.giving-page .giving-questions {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  text-align: center;
 }
 
-.giving-questions h2 {
-    color: white !important;
-    margin-bottom: 15px;
+.giving-page .giving-questions h2 {
+  color: var(--color-surface) !important;
+  margin-bottom: 15px;
 }
 
-.giving-questions p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+.giving-page .giving-questions p {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.contact-btn {
-    display: inline-block;
-    padding: 14px 36px;
-    background-color: white;
-    color: #C25051;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
+.giving-page .contact-btn {
+  display: inline-block;
+  padding: 14px 36px;
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
 }
 
-.contact-btn:hover {
-    background-color: #092352;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+.giving-page .contact-btn:hover {
+  background-color: var(--color-navy);
+  color: var(--color-surface);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .giving-header {
-        padding: 40px 20px;
-    }
+  .giving-page .section-content {
+    padding: 40px 20px;
+  }
 
-    .giving-header h1 {
-        font-size: 1.8rem;
-    }
+  .giving-page .giving-form-container {
+    padding: 30px 25px;
+  }
 
-    .giving-page .section-content {
-        padding: 40px 20px;
-    }
+  .giving-page .type-buttons {
+    grid-template-columns: 1fr;
+  }
 
-    .giving-form-container {
-        padding: 30px 25px;
-    }
+  .giving-page .preset-amounts {
+    flex-direction: column;
+  }
 
-    .type-buttons {
-        grid-template-columns: 1fr;
-    }
+  .giving-page .amount-btn {
+    width: 100%;
+  }
 
-    .preset-amounts {
-        flex-direction: column;
-    }
+  .giving-page .ways-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 
-    .amount-btn {
-        width: 100%;
-    }
+  .giving-page .way-card {
+    padding: 30px 25px;
+  }
 
-    .ways-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
+  .giving-page .why-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
 
-    .way-card {
-        padding: 30px 25px;
-    }
+  .giving-page .use-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
 
-    .why-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-    }
+  .giving-page .use-item {
+    padding: 25px 20px;
+  }
 
-    .use-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-    }
-
-    .use-item {
-        padding: 25px 20px;
-    }
-
-    .use-percentage {
-        font-size: 2rem;
-    }
+  .giving-page .use-percentage {
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .giving-header {
-        padding: 30px 15px;
-    }
+  .giving-page .section-content {
+    padding: 30px 15px;
+  }
 
-    .giving-page .section-content {
-        padding: 30px 15px;
-    }
+  .giving-page .giving-form-container {
+    padding: 25px 20px;
+  }
 
-    .giving-form-container {
-        padding: 25px 20px;
-    }
+  .giving-page .scripture-section blockquote p {
+    font-size: 1.1rem;
+  }
 
-    .scripture-section blockquote p {
-        font-size: 1.1rem;
-    }
+  .giving-page .give-btn {
+    padding: 16px 24px;
+    font-size: 1.1rem;
+  }
 
-    .give-btn {
-        padding: 16px 24px;
-        font-size: 1.1rem;
-    }
+  .giving-page .why-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .why-grid {
-        grid-template-columns: 1fr;
-    }
+  .giving-page .use-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .use-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-btn {
-        padding: 12px 28px;
-        font-size: 1rem;
-    }
+  .giving-page .contact-btn {
+    padding: 12px 28px;
+    font-size: 1rem;
+  }
 }
