@@ -151,7 +151,10 @@
   padding: 12px 14px;
   border-radius: 25px;
   white-space: nowrap;
-  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .nav-link:hover,
@@ -199,7 +202,10 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
   z-index: 1100;
 }
 
@@ -280,7 +286,9 @@
   min-height: var(--touch-target);
   border-radius: 25px;
   box-shadow: 0 4px 12px rgba(var(--rgb-primary), 0.4);
-  transition: background-color 0.25s ease, transform 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .give-button:hover {
@@ -316,7 +324,9 @@
   width: 100%;
   background-color: var(--color-surface);
   border-radius: 3px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
   transform-origin: center;
 }
 

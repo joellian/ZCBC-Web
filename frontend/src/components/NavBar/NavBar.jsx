@@ -112,7 +112,10 @@ const NavBar = () => {
               aria-controls="primary-navigation"
               onClick={() => setMobileOpen((open) => !open)}
             >
-              <span className={`hamburger ${mobileOpen ? 'open' : ''}`} aria-hidden="true">
+              <span
+                className={`hamburger ${mobileOpen ? 'open' : ''}`}
+                aria-hidden="true"
+              >
                 <span></span>
                 <span></span>
                 <span></span>
