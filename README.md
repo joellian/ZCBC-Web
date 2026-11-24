@@ -4,9 +4,6 @@ Developed by: Bawi Hmun Lian
 
 This web app informs the public about Zion Chin Baptist Church in Northern Kentucky. It contains details of current leadership, community work, missionary work, and global outreach.
 
-> Setup, project structure, conventions, and admin configuration live in
-> [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md).
-
 ## Features
 
 The following **functionality** is completed:
