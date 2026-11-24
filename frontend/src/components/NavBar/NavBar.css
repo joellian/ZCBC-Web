@@ -1,925 +1,505 @@
-/* Navigation Bar Styles */
-.header-container {
-  background: var(--color-navy);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+/* =========================================================================
+   Global site header
+   Two stacked bars inside one sticky <header>: a thin utility bar and the
+   main bar (brand · primary nav · Give). Every colour resolves to a design
+   token from App.css :root — no hard-coded brand colours here.
+   ========================================================================= */
+
+.site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  background: var(--color-navy);
   border-bottom: 3px solid var(--color-primary);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: visible;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.header-container.expanded {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+/* One visible focus ring for every interactive element in the header.
+   White on the navy bars; overridden to primary on the light dropdown below. */
+.site-header a:focus-visible,
+.site-header button:focus-visible {
+  outline: 2px solid var(--color-surface);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
-/* Flush against a page banner: drop the seam so the two blues read as one block.
-   The banner carries the red accent instead (PageHeader.css). */
-.header-container.has-banner {
-  border-bottom-color: transparent;
-  box-shadow: none;
+/* -------------------------------------------------------------------------
+   1. Utility bar
+   ------------------------------------------------------------------------- */
+.utility-bar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.8rem;
 }
 
-/* Once the sticky nav lifts off the banner it needs its own edge back.
-   Below 1025px the nav is position: relative and never lifts, so this stays off. */
-@media (min-width: 1025px) {
-  .header-container.has-banner.stuck:not(.expanded) {
-    border-bottom-color: var(--color-primary);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  }
-}
-
-.header-container.has-banner.expanded {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-.header-container .main-nav {
-  max-width: 100%;
-  margin: 0;
-  padding: 0 40px;
-  position: relative;
-  z-index: 10;
-}
-
-.header-container .nav-items {
+.utility-inner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 10px 40px;
+  min-height: var(--touch-target);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  flex-wrap: nowrap;
+  gap: 16px;
 }
 
-/* Logo Section */
-.header-container .header-item.church-logo {
-  margin-right: 10px;
+/* One flex child now (the facts). It fills the bar and space-between spreads
+   the facts edge-to-edge, so the strip reads as deliberate rather than a
+   left-huddled row. The old .utility-inner space-between was for two children
+   (facts | actions) and is a no-op now that actions are gone. */
+.utility-facts {
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 24px;
+  color: rgba(255, 255, 255, 0.75);
+  min-width: 0;
+}
+
+.utility-fact-label {
+  color: var(--color-surface);
+  font-weight: 600;
+}
+
+.utility-phone {
+  color: var(--color-surface);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.utility-phone:hover {
+  color: var(--color-primary);
+}
+
+/* -------------------------------------------------------------------------
+   2. Main bar
+   ------------------------------------------------------------------------- */
+.main-bar {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.main-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 76px;
+}
+
+/* Brand — always links to / */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
   flex-shrink: 0;
 }
 
-.header-container .header-item.church-logo img {
-  height: 120px;
+.brand-logo {
+  height: 56px;
   width: auto;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   transition: transform 0.3s ease;
 }
 
-.header-container .header-item.church-logo img:hover {
+.brand:hover .brand-logo {
   transform: scale(1.05);
 }
 
-/* Church Name */
-.header-container .header-item.church-name {
-  flex-grow: 0;
-  margin-right: 20px;
-  flex-shrink: 1;
-  min-width: 0;
-}
-
-.header-container .header-item.church-name a {
+.brand-name {
   color: var(--color-surface);
   font-family: 'Cinzel', serif;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  text-decoration: none;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  padding: 15px 12px;
-  display: block;
-  border-radius: 25px;
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  max-width: 12ch;
 }
 
-.header-container .header-item.church-name a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
+/* -------------------------------------------------------------------------
+   Primary nav (desktop)
+   ------------------------------------------------------------------------- */
+.primary-nav {
+  flex: 1;
 }
 
-.header-container .header-item.church-name a:hover::before {
-  left: 100%;
-}
-
-.header-container .header-item.church-name a:hover {
-  background-color: var(--color-primary);
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* Navigation Links */
-.header-container .header-item {
-  margin: 0 2px;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.header-container .header-item a {
-  color: var(--color-surface);
-  text-decoration: none;
-  padding: 15px 12px;
-  display: block;
-  font-weight: 500;
-  font-size: 0.95rem;
-  border-radius: 25px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.header-container .header-item a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.header-container .header-item a:hover::before {
-  left: 100%;
-}
-
-.header-container .header-item a:hover {
-  background-color: var(--color-primary);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(var(--rgb-primary), 0.4);
-}
-
-.header-container .header-item a:active {
-  transform: translateY(0);
-}
-
-/* Special styling for active/current page */
-.header-container .header-item a.active {
-  background-color: var(--color-primary);
-  color: var(--color-surface);
-  font-weight: 700;
-}
-
-/* Expandable Menu Styles */
-.header-container .header-item.expandable {
-  position: relative;
-}
-
-/* Hide mobile link on desktop, show desktop trigger */
-.header-container .expandable-trigger.mobile-link {
-  display: none;
-}
-
-.header-container .expandable-trigger.desktop-trigger {
+.nav-list {
   display: flex;
-  /* It is a <button> for keyboard/screen-reader support; strip the UA chrome
-     so it still looks like the nav link beside it. */
-  background: none;
-  border: none;
-  font-family: inherit;
-  min-height: 0;
-  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.header-container .expandable-trigger {
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   color: var(--color-surface);
-  padding: 15px 12px;
-  font-weight: 500;
+  text-decoration: none;
   font-size: 0.95rem;
+  font-weight: 500;
+  padding: 12px 14px;
   border-radius: 25px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
   white-space: nowrap;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
-.header-container .expandable-trigger::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
+.nav-link:hover,
+.nav-link:focus-visible,
+.has-dropdown.open > .nav-link {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  transform: translateY(-1px);
 }
 
-.header-container .expandable-trigger:hover::before {
-  left: 100%;
+.nav-link.active {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  font-weight: 700;
 }
 
-.header-container .expand-arrow {
-  font-size: 0.8rem;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  color: inherit;
+/* Caret on mega-menu triggers */
+.caret {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  transition: transform 0.3s ease;
 }
 
-.header-container.expanded .expand-arrow {
-  font-size: 0.9rem;
-}
-
-.header-container .expand-arrow.rotated {
+.has-dropdown.open > .nav-link .caret {
   transform: rotate(180deg);
 }
 
-.header-container .expandable-trigger:hover {
-  background-color: var(--color-primary);
-  color: white;
-  transform: translateY(-2px);
-}
-
-.header-container .header-item.expandable.active .expandable-trigger {
-  background-color: var(--color-primary);
-  color: var(--color-surface);
-  font-weight: 700;
-}
-
-.header-container.expanded .header-item.expandable.active .expandable-trigger {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  );
-  box-shadow: 0 4px 15px rgba(var(--rgb-primary), 0.4);
-  transform: translateY(-2px);
-  color: var(--color-surface);
-  font-weight: 700;
-}
-
-/* Expanded Menu Content */
-.header-container .expanded-menu {
+/* -------------------------------------------------------------------------
+   Mega-menu dropdown (desktop)
+   ------------------------------------------------------------------------- */
+.dropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 6px);
   left: 0;
-  right: 0;
-  background: linear-gradient(
-    145deg,
-    var(--color-surface) 0%,
-    var(--color-surface-muted) 100%
-  );
+  min-width: 340px;
+  max-width: 92vw;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  border: 1px solid var(--color-border);
+  padding: 10px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-20px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  z-index: 1100;
 }
 
-.header-container .expanded-menu.show {
+/* Ministries has eight children — give the wide menus two columns. */
+.dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.has-dropdown.open .dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-.header-container .expanded-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-/* Expanded Header */
-.header-container .expanded-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 40px 30px;
-  background: linear-gradient(
-    135deg,
-    rgba(var(--rgb-primary), 0.08) 0%,
-    rgba(var(--rgb-navy), 0.05) 100%
-  );
-  border-bottom: 1px solid rgba(var(--rgb-primary), 0.1);
-}
-
-.header-container .header-content h2 {
-  margin: 0 0 8px 0;
-  color: var(--color-navy);
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.header-container .header-content p {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: 1.1rem;
-  line-height: 1.5;
-  max-width: 500px;
-}
-
-.header-container .header-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-container .church-icon {
-  font-size: 4rem;
-  color: var(--color-primary);
-  opacity: 0.8;
-}
-
-/* Expanded Sections */
-.header-container .expanded-sections {
-  padding: 40px;
-}
-
-.header-container .sections-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-.header-container .section-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 24px;
-  background: white;
-  border-radius: 12px;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(var(--rgb-primary), 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.header-container .section-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(var(--rgb-primary), 0.05) 0%,
-    rgba(var(--rgb-primary), 0.02) 100%
-  );
-  transition: left 0.4s ease;
-}
-
-.header-container .section-card:hover::before {
-  left: 0;
-}
-
-.header-container .section-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(var(--rgb-primary), 0.15);
-  border-color: rgba(var(--rgb-primary), 0.3);
-}
-
-.header-container .card-icon {
-  flex-shrink: 0;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  );
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-}
-
-.header-container .card-icon .icon {
-  font-size: 1.8rem;
-  filter: brightness(0) invert(1);
-}
-
-.header-container .card-content {
-  flex: 1;
-  position: relative;
-  z-index: 1;
-}
-
-.header-container .card-content h3 {
-  margin: 0 0 8px 0;
-  color: var(--color-navy);
-  font-size: 1.3rem;
-  font-weight: 600;
-}
-
-.header-container .card-content p {
-  margin: 0 0 12px 0;
-  color: var(--color-text-muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-.header-container .card-arrow {
-  color: var(--color-primary);
-  font-weight: 600;
-  font-size: 0.9rem;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
-}
-
-.header-container .section-card:hover .card-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Expanded Footer */
-.header-container .expanded-footer {
-  background: linear-gradient(
-    135deg,
-    rgba(var(--rgb-navy), 0.05) 0%,
-    rgba(var(--rgb-primary), 0.08) 100%
-  );
-  border-top: 1px solid rgba(var(--rgb-primary), 0.1);
-  padding: 30px 40px;
-}
-
-.header-container .footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-container .main-page-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding: 12px 24px;
-  border: 2px solid var(--color-primary);
-  border-radius: 25px;
-  transition: all 0.3s ease;
-  background: white;
-}
-
-.header-container .main-page-link:hover {
-  background-color: var(--color-primary);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgb(250, 249, 249);
-}
-
-.header-container .footer-arrow {
-  transition: transform 0.3s ease;
-}
-
-.header-container .main-page-link:hover .footer-arrow {
-  transform: translateX(4px);
-}
-
-.header-container .footer-text {
-  flex: 1;
-  text-align: right;
-  margin-left: 20px;
-}
-
-.header-container .footer-text p {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-style: italic;
-  font-size: 1rem;
-}
-
-/* Overlay */
-.header-container .nav-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* Keep the menu from spilling off the right edge for items near the end. */
+.nav-item:nth-last-child(-n + 2) .dropdown {
+  left: auto;
   right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.3);
-  z-index: 998;
-  opacity: 0;
-  animation: fadeIn 0.3s ease forwards;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+.dropdown-link {
+  display: block;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
 }
 
-/* Animation for expanded menu */
-@keyframes expandDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-    max-height: 0;
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    max-height: 600px;
-  }
+.dropdown-link:hover,
+.dropdown-link:focus-visible {
+  background-color: var(--color-surface-tint);
 }
 
-.header-container .expanded-menu.show {
-  animation: expandDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.dropdown-link:focus-visible {
+  outline-color: var(--color-primary);
 }
 
-/* Mobile Menu Toggle Button */
-.header-container .mobile-menu-toggle {
+.dropdown-label {
+  display: block;
+  color: var(--color-navy);
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+.dropdown-desc {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   Give button + hamburger
+   ------------------------------------------------------------------------- */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.give-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  padding: 11px 24px;
+  min-height: var(--touch-target);
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(var(--rgb-primary), 0.4);
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.give-button:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.give-button:focus-visible {
+  outline-offset: 3px;
+}
+
+.nav-toggle {
   display: none;
   background: none;
   border: none;
   cursor: pointer;
   padding: 10px;
-  z-index: 1001;
-  position: fixed;
-  right: 15px;
-  top: 15px;
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
 }
 
-.header-container .hamburger {
+.hamburger {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 25px;
-  position: relative;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
 }
 
-.header-container .hamburger span {
+.hamburger span {
   display: block;
   height: 3px;
   width: 100%;
   background-color: var(--color-surface);
   border-radius: 3px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   transform-origin: center;
 }
 
-.header-container .hamburger.open span:nth-child(1) {
-  transform: translateY(11px) rotate(45deg);
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
 }
 
-.header-container .hamburger.open span:nth-child(2) {
+.hamburger.open span:nth-child(2) {
   opacity: 0;
 }
 
-.header-container .hamburger.open span:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
 }
 
-/* Mobile Responsiveness */
+.nav-backdrop {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------
+   Mobile ( <= 1024px ): drawer for the primary nav; Give stays in the bar
+   ------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
-  .header-container .mobile-menu-toggle {
-    display: block;
+  /* The utility strip stays visible on mobile so the tap-to-call phone is
+     reachable. Facts huddle (centered, tighter gaps/padding) instead of
+     spreading edge-to-edge as they do on desktop. */
+  .utility-inner {
+    padding: 8px 20px;
   }
 
-  .header-container {
-    position: relative;
+  .utility-facts {
+    justify-content: center;
+    gap: 4px 16px;
   }
 
-  /* Mobile header layout */
-  .header-container .main-nav {
-    position: relative;
-    display: flex;
+  .main-bar {
+    padding: 0 20px;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 60px;
-    min-height: 70px;
   }
 
-  /* Nav items default - visible in header, centered */
-  .header-container .nav-items {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
+  /* Push Give + hamburger to the right, brand to the left. */
+  .brand {
+    margin-right: auto;
   }
 
-  /* When mobile menu is triggered, nav-items becomes sidebar */
-  .header-container .nav-items.mobile-open {
+  /* Off-canvas drawer */
+  .primary-nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 280px;
+    width: 300px;
     max-width: 85vw;
     height: 100vh;
     background: var(--color-navy);
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.4);
+    padding: 80px 0 24px;
     overflow-y: auto;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
-    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1050;
   }
 
-  /* In header: show only church name, hide logo and nav items */
-  .header-container .nav-items:not(.mobile-open) > .header-item:not(.church-name) {
-    display: none;
+  .primary-nav.open {
+    transform: translateX(0);
   }
 
-  /* In header: hide logo in mobile view */
-  .header-container .nav-items:not(.mobile-open) .header-item.church-logo {
-    display: none !important;
+  .nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
   }
 
-  /* In header: center church name */
-  .header-container .nav-items:not(.mobile-open) .header-item.church-name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    max-width: 100%;
-  }
-
-  .header-container .nav-items:not(.mobile-open) .header-item.church-name a {
-    font-size: clamp(0.8rem, 2.8vw, 1.1rem);
-    padding: 5px 5px;
-    white-space: normal;
-    text-align: center;
-    line-height: 1.3;
-    width: 100%;
-    word-wrap: break-word;
-  }
-
-  /* In sidebar: show logo at top, hide church name */
-  .header-container .nav-items.mobile-open .header-item.church-logo {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 45px;
-    border: none;
-    margin: 0;
-    background: transparent;
-    width: 100%;
-    order: -1;
-  }
-
-  .header-container .nav-items.mobile-open .header-item.church-logo img {
-    height: 155px;
-    width: auto;
-    display: block;
-  }
-
-  .header-container .nav-items.mobile-open .header-item.church-name {
-    display: none !important;
-  }
-
-  /* In sidebar: show navigation items */
-  .header-container
-    .nav-items.mobile-open
-    > .header-item:not(.church-logo):not(.church-name) {
-    display: flex;
-  }
-
-  /* Sidebar items styling */
-  .header-container .nav-items.mobile-open .header-item {
-    margin: 0;
-    width: 100%;
+  .nav-item {
+    position: static;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .header-container .nav-items.mobile-open .header-item a {
-    width: 100%;
-    text-align: left;
-    padding: 16px 20px;
+  .nav-link {
     border-radius: 0;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background: transparent !important;
-    color: var(--color-surface) !important;
+    padding: 15px 22px;
+    min-height: var(--touch-target);
+    justify-content: space-between;
   }
 
-  .header-container .nav-items.mobile-open .header-item a:hover {
-    background-color: var(--color-primary) !important;
-    color: var(--color-surface) !important;
+  .nav-link:hover,
+  .nav-link:focus-visible,
+  .has-dropdown.open > .nav-link {
     transform: none;
   }
 
-  .header-container .nav-items.mobile-open .header-item a.active {
-    background-color: var(--color-primary) !important;
-    color: var(--color-surface) !important;
-    font-weight: 700;
+  /* In the drawer the children are a static, always-visible sub-list so every
+     destination is reachable without hover. */
+  .dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    min-width: 0;
+    max-width: none;
+    background: rgba(0, 0, 0, 0.18);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
   }
 
-  /* Show mobile link only in sidebar, hide desktop trigger */
-  .header-container .nav-items.mobile-open .expandable-trigger.mobile-link {
-    display: flex !important;
-    width: 100%;
-    text-align: left;
-    padding: 16px 20px;
+  .dropdown-list {
+    grid-template-columns: 1fr;
+  }
+
+  .dropdown-link {
     border-radius: 0;
-    min-height: 48px;
-    align-items: center;
-    justify-content: flex-start;
-    background: transparent !important;
-    text-decoration: none;
+    padding: 10px 22px 10px 34px;
+  }
+
+  .dropdown-link:hover,
+  .dropdown-link:focus-visible {
+    background-color: rgba(var(--rgb-primary), 0.25);
+  }
+
+  .dropdown-label {
     color: var(--color-surface);
   }
 
-  .header-container .nav-items.mobile-open .expandable-trigger.desktop-trigger {
-    display: none !important;
+  .dropdown-desc {
+    color: rgba(255, 255, 255, 0.65);
   }
 
-  .header-container .nav-items.mobile-open .expandable-trigger.mobile-link:hover {
-    background-color: var(--color-primary) !important;
-    color: var(--color-surface) !important;
-    transform: none;
+  /* The caret is decorative in the drawer (menus are always expanded). */
+  .caret {
+    display: none;
   }
 
-  .header-container .nav-items.mobile-open .expandable-trigger.mobile-link.active {
-    background-color: var(--color-primary) !important;
-    color: var(--color-surface) !important;
-    font-weight: 700;
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    z-index: 1040;
   }
 
-  /* Hide expanded menus in mobile - use simple navigation instead */
-  .header-container .expanded-menu {
-    display: none !important;
-  }
-
-  /* Show expanded menu content as simple list in mobile sidebar */
-  .header-container .header-item.expandable.active {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-
-  .header-container .expanded-header {
-    flex-direction: column;
-    text-align: center;
-    padding: 30px 20px;
-  }
-
-  .header-container .header-content h2 {
-    font-size: 1.6rem;
-  }
-
-  .header-container .church-icon {
-    font-size: 3rem;
-    margin-top: 15px;
-  }
-
-  .header-container .expanded-sections {
-    padding: 30px 20px;
-  }
-
-  .header-container .sections-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .header-container .expanded-footer {
-    padding: 20px;
-  }
-
-  .header-container .footer-content {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-
-  .header-container .footer-text {
-    text-align: center;
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .header-container .mobile-menu-toggle {
-    right: 12px;
-    top: 18px;
-  }
-
-  .header-container .main-nav {
-    padding: 10px 20px;
-    min-height: 75px;
-  }
-
-  .header-container .nav-items:not(.mobile-open) .header-item.church-name {
-    max-width: 100%;
-  }
-
-  .header-container .nav-items:not(.mobile-open) .header-item.church-name a {
-    font-size: clamp(0.85rem, 3vw, 1.05rem);
-    line-height: 1.25;
-    padding: 5px 5px;
-  }
-
-  .header-container .section-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 24px;
-    min-height: 60px;
-  }
-
-  .header-container .card-icon {
-    align-self: center;
-    margin-bottom: 15px;
-    width: 70px;
-    height: 70px;
-  }
-
-  .header-container .card-icon .icon {
-    font-size: 2rem;
-  }
-
-  .header-container .expanded-header {
-    padding: 25px 15px;
-  }
-
-  .header-container .expanded-sections {
-    padding: 25px 15px;
-  }
-
-  .header-container .expanded-footer {
-    padding: 20px 15px;
-  }
-
-  .header-container .main-page-link {
-    font-size: 1rem;
-    padding: 14px 20px;
-    min-height: 48px;
-  }
-
-  /* Prevent body scroll when mobile menu is open */
-  body.mobile-menu-open {
+  body.nav-drawer-open {
     overflow: hidden;
   }
 }
 
-@media (max-width: 480px) {
-  .header-container .mobile-menu-toggle {
-    right: 10px;
-    top: 15px;
+@media (max-width: 600px) {
+  /* Not enough room for all four facts on a phone — drop the address
+     (the footer still carries it) and keep the tap-to-call phone, which is
+     always last. nth-last-child(2) is the address regardless of how many
+     service times precede it. */
+  .utility-facts .utility-fact:nth-last-child(2) {
+    display: none;
   }
 
-  .header-container .main-nav {
-    padding: 10px 20px;
-    min-height: 75px;
+  .brand-logo {
+    height: 46px;
   }
 
-  .header-container .nav-items:not(.mobile-open) .header-item.church-name {
-    max-width: 100%;
+  .brand-name {
+    font-size: 0.9rem;
+    max-width: 9ch;
   }
 
-  .header-container .nav-items:not(.mobile-open) .header-item.church-name a {
-    font-size: clamp(0.75rem, 3.5vw, 0.95rem);
-    padding: 4px 4px;
-    line-height: 1.3;
-    word-break: break-word;
-  }
-
-  .header-container .nav-items.mobile-open {
-    width: 260px;
-  }
-
-  .header-container .header-content h2 {
-    font-size: 1.4rem;
-  }
-
-  .header-container .header-content p {
-    font-size: 1rem;
-  }
-
-  .header-container .main-page-link {
-    font-size: 1rem;
-    padding: 10px 20px;
+  .give-button {
+    padding: 10px 18px;
   }
 }
 
-/* Extra small screens */
-@media (max-width: 360px) {
-  .header-container .main-nav {
-    padding: 8px 20px;
-    min-height: 75px;
-  }
-
-  .header-container .nav-items:not(.mobile-open) .header-item.church-name {
-    max-width: 100%;
-  }
-
-  .header-container .nav-items:not(.mobile-open) .header-item.church-name a {
-    font-size: clamp(0.65rem, 3.8vw, 0.85rem);
-    padding: 3px 3px;
-    line-height: 1.4;
-  }
-
-  .header-container .nav-items.mobile-open {
-    width: 240px;
+/* -------------------------------------------------------------------------
+   Reduced motion
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .site-header *,
+  .site-header *::before,
+  .site-header *::after {
+    transition-duration: 0.01ms !important;
   }
 }

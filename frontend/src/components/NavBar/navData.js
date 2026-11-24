@@ -1,183 +1,206 @@
+import { createElement } from 'react';
 import { church } from '../../config/church';
 
 /**
- * Navigation configuration — one entry per top-level nav item, in display order.
+ * Global header navigation — the single source of truth for the header.
  *
- * An entry with `items` renders an expandable mega-menu; one without is a
- * plain link. That single distinction replaces the special-cased JSX NavBar
- * used to carry so it could slot Contact Us between Visit Us and Giving.
+ * Edit labels, order, destinations and descriptions here; NavBar.jsx and
+ * NavDropdown.jsx render whatever this file describes and never hard-code a
+ * label or link. Add/remove a `children` array to turn an item into (or out
+ * of) a mega-menu.
  *
- * Sub-item hrefs point at anchors that already exist on each page
- * (`id="who-we-are"` and friends), so a mega-menu link jumps to its section
- * instead of sending all four links to the same page top.
+ * Placeholder links: several destinations in the spec don't have pages yet
+ * (I'm New, Ministries, Events, and most mega-menu children). Those resolve to
+ * '#' so they don't 404, with the intended path noted in a trailing comment —
+ * a one-line change once each page ships.
  */
-export const menuConfig = [
+
+const TODO = '#'; // no route yet — see comment on each line for the intended path
+
+/** Top-level items, in display order. `children` ⇒ mega-menu; otherwise a plain link. */
+export const primaryNav = [
   {
-    key: 'home',
-    label: 'Home',
-    path: '/',
+    key: 'im-new',
+    label: "I'm New",
+    href: TODO, // /im-new
+    children: [
+      {
+        label: 'Plan Your Visit',
+        href: TODO, // /im-new/plan-your-visit
+        description: 'Everything you need to know before your first Sunday with us.',
+      },
+      {
+        label: 'What to Expect',
+        href: TODO, // /im-new/what-to-expect
+        description: 'A quick walk-through of a typical service, start to finish.',
+      },
+      {
+        label: 'Our Beliefs',
+        href: TODO, // /im-new/beliefs
+        description: 'The core truths and doctrine that shape our church.',
+      },
+      {
+        label: 'Meet the Pastor',
+        href: TODO, // /im-new/pastor
+        description: "Get to know the person who'll be teaching each week.",
+      },
+      {
+        label: 'Find Us',
+        href: TODO, // /im-new/find-us
+        description: 'Directions, parking, and how to reach the building.',
+      },
+    ],
   },
   {
     key: 'about',
-    label: 'About Us',
-    path: '/about-us',
-    headerTitle: 'Learn About Our Church',
-    headerDescription:
-      'Discover our mission, meet our leadership, and explore what makes our community special',
-    headerIcon: '✝️',
-    ctaLabel: 'Visit Complete About Us Page',
-    ctaArrowLabel: 'Explore',
-    footerText: 'Join us in worship and fellowship as we grow together in faith',
-    items: [
-      {
-        label: 'Leadership',
-        href: '/about-us#leadership',
-        description:
-          'Meet our dedicated pastors and church leaders who guide our community with wisdom and faith.',
-        icon: '\u{1F465}',
-      },
-      {
-        label: 'Who We Are',
-        href: '/about-us#who-we-are',
-        description:
-          'Discover our mission, values, and what makes our church community unique in faith.',
-        icon: '✝️',
-      },
+    label: 'About',
+    href: '/about-us',
+    children: [
       {
         label: 'Our Story',
-        href: '/about-us#our-story',
-        description:
-          'Learn about our church history and the journey that brought us to where we are today.',
-        icon: '\u{1F4D6}',
+        href: TODO, // /about-us/story
+        description: 'How our congregation began and where we are headed.',
       },
       {
-        label: 'What We Do',
-        href: '/about-us#what-we-do',
-        description:
-          "Explore our ministries, services, and how we serve our community and spread God's love.",
-        icon: '\u{1F64F}',
+        label: 'What We Believe',
+        href: TODO, // /about-us/beliefs
+        description: 'Our statement of faith and guiding convictions.',
+      },
+      {
+        label: 'Leadership & Staff',
+        href: TODO, // /about-us/leadership
+        description: 'The pastors, elders, and team who serve the church.',
+      },
+      {
+        label: 'Membership',
+        href: TODO, // /about-us/membership
+        description: 'What membership means and how to become one of us.',
+      },
+      {
+        label: 'Careers',
+        href: TODO, // /about-us/careers
+        description: 'Open staff positions and how to apply to serve.',
+      },
+    ],
+  },
+  {
+    key: 'ministries',
+    label: 'Ministries',
+    href: TODO, // /ministries
+    children: [
+      {
+        label: 'Kids',
+        href: TODO, // /ministries/kids
+        description: 'Safe, fun, Bible-centered ministry for children.',
+      },
+      {
+        label: 'Students',
+        href: TODO, // /ministries/students
+        description: 'Middle and high schoolers growing in faith together.',
+      },
+      {
+        label: 'Young Adults',
+        href: TODO, // /ministries/young-adults
+        description: 'Community and discipleship for college and twenties.',
+      },
+      {
+        label: 'Men',
+        href: TODO, // /ministries/men
+        description: 'Brotherhood, study, and service for the men of our church.',
+      },
+      {
+        label: 'Women',
+        href: TODO, // /ministries/women
+        description: 'Fellowship and Bible study for women of every season.',
+      },
+      {
+        label: 'Small Groups',
+        href: TODO, // /ministries/small-groups
+        description: 'Midweek groups to connect, study, and pray.',
+      },
+      {
+        label: 'Missions',
+        href: TODO, // /ministries/missions
+        description: 'Local and global outreach we support and send.',
+      },
+      {
+        label: 'Care',
+        href: TODO, // /ministries/care
+        description: 'Support, counseling, and prayer in times of need.',
       },
     ],
   },
   {
     key: 'sermons',
     label: 'Sermons',
-    path: '/sermons',
-    headerTitle: 'Explore Our Sermons',
-    headerDescription:
-      'Watch, listen, and grow in faith through our messages and teachings',
-    headerIcon: '\u{1F399}️',
-    ctaLabel: 'View All Sermons',
-    ctaArrowLabel: 'Explore',
-    footerText: "Grow spiritually through God's word and biblical teaching",
-    items: [
+    href: '/sermons',
+    children: [
       {
-        label: 'Recent Messages',
+        label: 'Latest Message',
         href: '/sermons',
-        description:
-          'Listen to our latest sermon messages and teachings from Sunday services.',
-        icon: '\u{1F399}️',
-      },
-      {
-        label: 'Sermon Series',
-        href: '/sermons',
-        description:
-          'Explore our ongoing and past sermon series covering various biblical topics.',
-        icon: '\u{1F4DA}',
+        description: "Watch or listen to this past Sunday's sermon.",
       },
       {
         label: 'Watch Live',
-        href: '/sermons',
-        description: 'Join us live for Sunday worship services and special events.',
-        icon: '\u{1F4FA}',
+        href: TODO, // /sermons/live
+        description: 'Join the service in real time each Sunday.',
       },
       {
-        label: 'By Topic',
+        label: 'Series Archive',
         href: '/sermons',
-        description: 'Browse sermons organized by biblical topics and themes.',
-        icon: '\u{1F50D}',
+        description: 'Browse past sermon series by topic and book.',
+      },
+      {
+        label: 'Podcast',
+        href: TODO, // /sermons/podcast
+        description: 'Take the weekly message with you anywhere.',
       },
     ],
   },
   {
-    key: 'visit',
-    label: 'Visit Us',
-    path: '/visit-us',
-    headerTitle: 'Plan Your Visit',
-    headerDescription:
-      "We'd love to welcome you! Find everything you need to know about visiting our church",
-    headerIcon: '\u{1F44B}',
-    ctaLabel: 'Visit Us Page',
-    ctaArrowLabel: 'Learn More',
-    footerText: `Come as you are - everyone is welcome at ${church.name}`,
-    items: [
-      {
-        label: 'Service Times',
-        href: '/visit-us',
-        description: 'Find our Sunday worship times and weekly service schedule.',
-        icon: '⏰',
-      },
-      {
-        label: 'Location & Directions',
-        href: '/visit-us',
-        description: 'Get directions to our church and information about parking.',
-        icon: '\u{1F4CD}',
-      },
-      {
-        label: 'What to Expect',
-        href: '/visit-us',
-        description: 'Learn what to expect when visiting us for the first time.',
-        icon: '\u{1F44B}',
-      },
-      {
-        label: 'Plan Your Visit',
-        href: '/visit-us',
-        description: 'Prepare for your first visit with helpful information and tips.',
-        icon: '\u{1F4DD}',
-      },
-    ],
+    key: 'events',
+    label: 'Events',
+    href: TODO, // /events — direct link, no dropdown
   },
   {
     key: 'contact',
-    label: 'Contact Us',
-    path: '/contact-us',
+    label: 'Contact',
+    href: '/contact-us', // direct link, no dropdown
+  },
+];
+
+/** The Give call-to-action. Rendered as a filled button, outside the nav list. */
+export const giveLink = {
+  label: 'Give',
+  href: '/giving',
+};
+
+/**
+ * Facts shown in the utility bar, derived from the church config so service
+ * times, address and phone stay in one place ([[church]]).
+ *
+ * Order matters for the responsive rule in NavBar.css: the phone is kept last
+ * so the address (`:nth-last-child(2)`) can be dropped on small screens while
+ * the phone stays. The phone `value` is a real element (a tel: link) rather
+ * than a string — NavBar.jsx renders `{fact.value}` as-is, so the anchor has
+ * to live here. It's built with createElement because this is a .js file and
+ * the React plugin only compiles JSX in .jsx.
+ */
+export const utilityFacts = [
+  ...church.services.map((service) => ({
+    label: service.name,
+    value: service.time,
+  })),
+  {
+    label: 'Find us',
+    value: `${church.address.street}, ${church.address.cityStateZip}`,
   },
   {
-    key: 'giving',
-    label: 'Giving',
-    path: '/giving',
-    headerTitle: 'Generosity & Giving',
-    headerDescription:
-      'Support our mission and ministry through your generous contributions',
-    headerIcon: '\u{1F49D}',
-    ctaLabel: 'Give Now',
-    ctaArrowLabel: 'Learn More',
-    footerText: 'Each one must give as he has decided in his heart - 2 Corinthians 9:7',
-    items: [
-      {
-        label: 'Why We Give',
-        href: '/giving',
-        description: 'Understand the biblical foundation and importance of giving.',
-        icon: '\u{1F49D}',
-      },
-      {
-        label: 'Ways to Give',
-        href: '/giving',
-        description: 'Discover the various methods available for giving to the church.',
-        icon: '\u{1F4B3}',
-      },
-      {
-        label: 'Online Giving',
-        href: '/giving',
-        description: 'Make a secure online donation quickly and conveniently.',
-        icon: '\u{1F4BB}',
-      },
-      {
-        label: 'Recurring Donations',
-        href: '/giving',
-        description: 'Set up automatic recurring donations to support our ministry.',
-        icon: '\u{1F504}',
-      },
-    ],
+    label: 'Call us',
+    value: createElement(
+      'a',
+      { className: 'utility-phone', href: `tel:${church.contact.phoneHref}` },
+      church.contact.phone
+    ),
   },
 ];

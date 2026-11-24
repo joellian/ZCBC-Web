@@ -61,9 +61,14 @@ const HomePage = () => {
             <Link to="/visit-us" className="hero-btn primary">
               Plan Your Visit
             </Link>
-            <Link to="/sermons" className="hero-btn secondary">
-              Watch Live
-            </Link>
+            <a
+              href={church.social.youtube}
+              className="hero-btn secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Watch Sermons
+            </a>
           </div>
         </div>
         <div className="hero-scroll-indicator">
