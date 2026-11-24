@@ -1,0 +1,26 @@
+{
+  "name": "zcbc-website",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Zion Chin Baptist Church website \u2014 React frontend and Strapi CMS",
+  "engines": {
+    "node": ">=20.19.0 <23.0.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "postinstall": "node -e \"if (!process.env.ZCBC_SETUP) console.log('\\n  Next:  npm run setup   (creates .env files, installs frontend + CMS)\\n')\"",
+    "predev": "node scripts/setup.mjs --check",
+    "dev": "concurrently -n web,cms -c cyan,magenta \"npm --prefix frontend run dev\" \"npm --prefix backend/church-cms run develop\"",
+    "dev:web": "npm --prefix frontend run dev",
+    "dev:cms": "npm --prefix backend/church-cms run develop",
+    "build": "npm --prefix frontend run build",
+    "lint": "npm --prefix frontend run lint",
+    "format": "npm --prefix frontend run format",
+    "format:check": "npm --prefix frontend run format:check",
+    "ci": "npm --prefix frontend run format:check && npm --prefix frontend run lint && npm --prefix frontend run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
