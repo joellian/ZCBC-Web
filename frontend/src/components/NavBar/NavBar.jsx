@@ -18,6 +18,8 @@ import NavDropdown from './NavDropdown';
 const NavBar = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Key of the nav item last hovered or focused; only that dropdown may be open.
+  const [currentKey, setCurrentKey] = useState(null);
 
   const closeMobile = () => setMobileOpen(false);
   const isActive = (href) => href && href !== '#' && location.pathname === href;
@@ -82,10 +84,17 @@ const NavBar = () => {
                     key={item.key}
                     item={item}
                     isActive={isActive}
+                    isCurrent={currentKey === item.key}
+                    onActivate={() => setCurrentKey(item.key)}
                     onNavigate={closeMobile}
                   />
                 ) : (
-                  <li key={item.key} className="nav-item">
+                  <li
+                    key={item.key}
+                    className="nav-item"
+                    onMouseEnter={() => setCurrentKey(item.key)}
+                    onFocus={() => setCurrentKey(item.key)}
+                  >
                     <Link
                       to={item.href}
                       className={`nav-link ${isActive(item.href) ? 'active' : ''}`}

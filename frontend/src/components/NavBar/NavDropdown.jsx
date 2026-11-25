@@ -16,21 +16,26 @@ import { Link } from 'react-router-dom';
  *            or focused, and returns focus to the trigger. Moving away and back
  *            clears the flag so the menu can reopen.
  *
+ * The parent also tracks which nav item the user most recently hovered or
+ * focused (`isCurrent`). Only that item may show its menu, so clicking one
+ * dropdown (which leaves it focused) and then hovering another closes the first.
+ *
  * On mobile the CSS lays the children out as a static sub-list, so this state
  * only governs the desktop pop-out.
  */
-const NavDropdown = ({ item, isActive, onNavigate }) => {
+const NavDropdown = ({ item, isActive, isCurrent, onActivate, onNavigate }) => {
   const itemRef = useRef(null);
   const triggerRef = useRef(null);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
-  const open = (hovered || focused) && !dismissed;
+  const open = (hovered || focused) && !dismissed && isCurrent;
 
   const handleFocus = () => {
     setFocused(true);
     setDismissed(false);
+    onActivate();
   };
 
   // Only close when focus actually leaves the item — moving between the trigger
@@ -57,6 +62,7 @@ const NavDropdown = ({ item, isActive, onNavigate }) => {
       onMouseEnter={() => {
         setHovered(true);
         setDismissed(false);
+        onActivate();
       }}
       onMouseLeave={() => setHovered(false)}
       onFocus={handleFocus}

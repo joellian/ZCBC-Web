@@ -39,7 +39,7 @@ export const church = {
       description: 'Bible study classes for all ages',
     },
     {
-      name: 'Chapel Service',
+      name: 'Church Service',
       time: '2:00 PM - 4:00 PM',
       description: 'Worship, prayer, and message',
     },
